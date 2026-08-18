@@ -1,0 +1,32 @@
+<svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 600 420"
+    >
+      <rect
+        width="600"
+        height="420"
+        rx="32"
+        fill="#FFF7ED"
+      />
+
+      <text
+        x="300"
+        y="215"
+        text-anchor="middle"
+        font-size="120"
+      >
+        🐱
+      </text>
+
+      <text
+        x="300"
+        y="330"
+        text-anchor="middle"
+        font-family="Arial, sans-serif"
+        font-size="30"
+        font-weight="700"
+        fill="#3B2416"
+      >
+        Le chat
+      </text>
+    </svg>

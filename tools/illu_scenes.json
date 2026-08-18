@@ -1,0 +1,88 @@
+{
+  "bonjour": {
+    "scene": "greeting",
+    "mood": "happy",
+    "pose": "wave"
+  },
+  "salut": {
+    "scene": "greeting",
+    "mood": "happy",
+    "pose": "wave"
+  },
+  "ca va": {
+    "scene": "ask",
+    "mood": "curious",
+    "pose": "ask"
+  },
+  "ca va bien": {
+    "scene": "answer_happy",
+    "mood": "happy",
+    "pose": "happy"
+  },
+  "merci": {
+    "scene": "thanks",
+    "mood": "happy",
+    "pose": "happy"
+  },
+  "au revoir": {
+    "scene": "goodbye",
+    "mood": "happy",
+    "pose": "wave"
+  },
+  "je suis heureux": {
+    "scene": "answer_happy",
+    "mood": "happy",
+    "pose": "happy"
+  },
+  "je suis fatigue": {
+    "scene": "tired",
+    "mood": "tired",
+    "pose": "tired"
+  },
+  "je bois de l'eau": {
+    "scene": "drink",
+    "mood": "happy",
+    "pose": "drink"
+  },
+  "je lis un livre": {
+    "scene": "read",
+    "mood": "happy",
+    "pose": "read"
+  },
+  "chat": {
+    "scene": "cat"
+  },
+  "chien": {
+    "scene": "dog"
+  },
+  "pomme": {
+    "scene": "apple"
+  },
+
+  "je mange": {
+  "scene": "eat",
+  "mood": "happy",
+  "pose": "eat"
+},
+"je dors": {
+  "scene": "sleep",
+  "mood": "tired",
+  "pose": "sleep"
+},
+"je cours": {
+  "scene": "run",
+  "mood": "happy",
+  "pose": "run"
+},
+"je marche": {
+  "scene": "walk",
+  "mood": "happy",
+  "pose": "walk"
+},
+"je souris": {
+  "scene": "smile",
+  "mood": "happy",
+  "pose": "happy"
+}
+  
+}
