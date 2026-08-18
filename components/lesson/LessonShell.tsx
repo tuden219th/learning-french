@@ -8,7 +8,7 @@ type LessonStep = {
   text?: string;
   translation?: string;
   audio?: string;
-  options?: {
+  options?: readonly {
     text: string;
     correct?: boolean;
   }[];
@@ -18,7 +18,7 @@ type Lesson = {
   title: string;
   subtitle: string;
   emoji: string;
-  steps: LessonStep[];
+  steps: readonly LessonStep[];
 };
 
 export default function LessonShell({ lesson }: { lesson: Lesson }) {
