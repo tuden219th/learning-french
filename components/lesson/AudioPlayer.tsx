@@ -38,7 +38,7 @@ export default function AudioPlayer({
     setDuration(0);
     setLoading(true);
     setError(false);
-  }, [src]);
+  }, [src, speed, volume]);
 
   function togglePlay() {
     const audio = audioRef.current;

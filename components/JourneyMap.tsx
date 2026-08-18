@@ -1,8 +1,22 @@
 import Link from "next/link";
 import { getLessons } from "@/lib/lessons";
+import { frenchLessons } from "@/data/french-lessons";
 
 export default function JourneyMap() {
-  const lessons = getLessons();
+  const fileLessons = getLessons();
+
+  // Convert frenchLessons (data) into the same shape used by the JourneyMap
+  const dataLessons = Object.entries(frenchLessons).map(([id, l], i) => ({
+    id,
+    title: l.title,
+    subtitle: l.subtitle,
+    icon: l.emoji,
+    // keep an order so lessons from data appear first
+    order: i,
+  }));
+
+  // Merge data lessons (from french-lessons.ts) with file-based lessons, avoiding duplicates
+  const lessons = [...dataLessons, ...fileLessons.filter((fl) => !dataLessons.find((d) => d.id === fl.id))];
 
   return (
     <section id="journey" className="py-16 sm:py-24">
