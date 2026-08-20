@@ -22,9 +22,22 @@ import {
   NumberSequence,
   NumberSpeaking,
 } from "./NumberActivities";
+import {
+  FamilyAnimal,
+  FamilyColor,
+  FamilyFind,
+  familyBedroomMembers,
+  familySalonMembers,
+  FamilyIntro,
+  FamilyNumber,
+  FamilySecret,
+  FamilySpeaking,
+  FamilySuperChallenge,
+  FamilyTeachingRoom,
+} from "./FamilyActivities";
 
 type LessonStep = {
-  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission" | "numberIntro" | "numberDiscovery" | "numberListenFind" | "numberCount" | "numberAnimalColor" | "numberAnimal" | "numberSpeaking" | "numberSequence" | "numberChallenge";
+  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission" | "numberIntro" | "numberDiscovery" | "numberListenFind" | "numberCount" | "numberAnimalColor" | "numberAnimal" | "numberSpeaking" | "numberSequence" | "numberChallenge" | "familyIntro" | "familySalon" | "familyFind" | "familyChambre" | "familyNumber" | "familyColor" | "familyAnimal" | "familySpeaking" | "familySecret" | "familyChallenge";
   title?: string;
   text?: string;
   translation?: string;
@@ -62,6 +75,9 @@ type Lesson = {
   completionNumbers?: readonly number[];
   completionChallenge?: string;
   numberGroups?: readonly (readonly number[])[];
+  familyMembers?: readonly string[];
+  completionBadge?: string;
+  completionStars?: readonly string[];
 };
 
 export default function LessonShell({ lesson }: { lesson: Lesson }) {
@@ -88,7 +104,7 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
     if (typeof window === "undefined") return;
 
     if (audioFile) {
-      playAudioFile(audioFile);
+      playAudioFile(audioFile, text);
       return;
     }
 
@@ -102,17 +118,17 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
     window.speechSynthesis.speak(utterance);
   }
 
-  function playAudioFile(file?: string) {
+  function playAudioFile(file?: string, fallbackText?: string) {
     if (!file || typeof window === "undefined") return;
 
     try {
       const url = `/audio/fr/${encodeURIComponent(file)}`;
       const audio = new Audio(url);
       audio.play().catch(() => {
-        // ignore play errors; TTS can be used by caller if needed
+        if (fallbackText) playAudio(fallbackText);
       });
     } catch {
-      // ignore
+      if (fallbackText) playAudio(fallbackText);
     }
   }
 
@@ -157,6 +173,17 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
               </div>
               <p className="mt-5 text-gray-600">{lesson.completionText}</p>
               <p className="mt-3 font-black text-[#C96A2B]">{lesson.completionChallenge}</p>
+            </>
+          )}
+
+          {lesson.familyMembers && (
+            <>
+              <div className="mt-7 flex flex-wrap justify-center gap-3 text-4xl">
+                {lesson.familyMembers.map((member, index) => <span key={`${member}-${index}`}>{member}</span>)}
+              </div>
+              <p className="mt-5 text-gray-600">{lesson.completionText}</p>
+              <div className="mt-4 text-2xl">{lesson.completionStars?.join(" ")}</div>
+              <p className="mt-4 font-black text-[#C96A2B]">🏅 {lesson.completionBadge}</p>
             </>
           )}
 
@@ -527,7 +554,7 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
           {step.type === "animalMission" && <AnimalMission onSpeak={playAudio} />}
 
           {step.type === "numberDiscovery" && (
-            <NumberDiscovery group={step.group ?? []} onSpeak={playAudio} onComplete={() => setStepComplete(true)} />
+            <NumberDiscovery key={`number-discovery-${stepIndex}`} group={step.group ?? []} onSpeak={playAudio} onComplete={() => setStepComplete(true)} />
           )}
 
           {step.type === "numberIntro" && <NumberIntro onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
@@ -546,12 +573,32 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
 
           {step.type === "numberChallenge" && <NumberChallenge onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
 
+          {step.type === "familyIntro" && <FamilyIntro onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "familySalon" && <FamilyTeachingRoom key="family-salon" room="Salon" members={familySalonMembers} onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "familyFind" && <FamilyFind onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "familyChambre" && <FamilyTeachingRoom key="family-chambre" room="Chambre" members={familyBedroomMembers} onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "familyNumber" && <FamilyNumber onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "familyColor" && <FamilyColor onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "familyAnimal" && <FamilyAnimal onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "familySpeaking" && <FamilySpeaking onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "familySecret" && <FamilySecret onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "familyChallenge" && <FamilySuperChallenge onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
         </section>
 
         {/* Bottom button */}
         <button
           onClick={next}
-          disabled={(step.type === "choice" && selected === null) || (step.type.startsWith("number") && !stepComplete)}
+          disabled={(step.type === "choice" && selected === null) || ((step.type.startsWith("number") || step.type.startsWith("family")) && !stepComplete)}
           className="mt-5 w-full rounded-2xl bg-[#C96A2B] px-6 py-4 text-lg font-bold text-white disabled:cursor-not-allowed disabled:opacity-40"
         >
           {stepIndex === lesson.steps.length - 1
