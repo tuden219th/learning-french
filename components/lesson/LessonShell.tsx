@@ -7,6 +7,7 @@ type LessonStep = {
   title?: string;
   text?: string;
   translation?: string;
+  instruction?: string;
   audio?: string;
   audioFile?: string;
   // additional fields for new step types
@@ -19,6 +20,7 @@ type LessonStep = {
   object?: string;
   question?: string;
   answer?: string;
+  promptColor?: string;
   options?: readonly {
     text: string;
     correct?: boolean;
@@ -131,6 +133,12 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
 
         {/* Lesson card */}
         <section className="rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+
+          {step.instruction && (
+            <div className="text-center mb-4">
+              <p className="text-lg font-semibold text-[#294A3A]">{step.instruction}</p>
+            </div>
+          )}
 
           {step.type === "intro" && (
             <div className="text-center">
@@ -374,7 +382,29 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
             <div className="text-center">
               <div className="text-6xl">🔗</div>
               <h2 className="mt-4 text-2xl font-bold text-[#294A3A]">{step.text}</h2>
-              <p className="mt-3 text-gray-500">Kể xem màu của đồ vật nhé.</p>
+              <p className="mt-3 text-gray-500">Chạm vào màu xanh dương.</p>
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                {["rouge", "bleu", "jaune", "vert"].map((color) => (
+                  <button
+                    key={color}
+                    onClick={() => setSelected(color === step.promptColor ? 1 : 0)}
+                    className={`rounded-2xl border-2 p-4 font-semibold ${
+                      selected === 1 && color === step.promptColor
+                        ? "border-green-500 bg-green-50"
+                        : selected === 0
+                          ? "border-red-400 bg-red-50"
+                          : "border-gray-200"
+                    }`}
+                  >
+                    {color}
+                  </button>
+                ))}
+              </div>
+              {selected !== null && (
+                <p className={`mt-4 font-bold ${selected === 1 ? "text-green-600" : "text-red-500"}`}>
+                  {selected === 1 ? "🎉 Đúng rồi!" : "❌ Chưa đúng. Thử lại nhé!"}
+                </p>
+              )}
               <div className="mt-6">
                 <button
                   onClick={() => {
@@ -414,19 +444,23 @@ function ColorHunt({ target }: { target?: string }) {
     { name: "vert", hex: "#2ECC71" },
   ];
 
+  const [feedback, setFeedback] = useState<string | null>(null);
+  const [correct, setCorrect] = useState(false);
+
   const handle = (name: string) => {
-    if (name === target) {
-      alert("🌟 Bravo !");
-    } else {
-      alert("💡 Thử lại nhé!");
-    }
+    const isCorrect = name === target;
+    setCorrect(isCorrect);
+    setFeedback(isCorrect ? "🌟 Đúng rồi!" : "💡 Chưa đúng. Thử lại nhé!");
   };
 
   return (
-    <div className="mt-6 grid grid-cols-4 gap-4">
-      {colors.map((c) => (
-        <button key={c.name} onClick={() => handle(c.name)} className="h-20 w-20 rounded-full shadow-md" style={{ background: c.hex }} aria-label={c.name} />
-      ))}
+    <div className="mt-6">
+      <div className="grid grid-cols-4 gap-4">
+        {colors.map((c) => (
+          <button key={c.name} onClick={() => handle(c.name)} className="h-20 w-20 rounded-full shadow-md" style={{ background: c.hex }} aria-label={c.name} />
+        ))}
+      </div>
+      {feedback && <p className={`mt-5 text-center font-bold ${correct ? "text-green-600" : "text-red-500"}`}>{feedback}</p>}
     </div>
   );
 }
@@ -434,17 +468,24 @@ function ColorHunt({ target }: { target?: string }) {
 function Matching({ pairs }: { pairs: readonly { left: string; right: string }[] }) {
   const [leftSel, setLeftSel] = useState<string | null>(null);
   const [matched, setMatched] = useState<Record<string, string>>({});
+  const [feedback, setFeedback] = useState<string | null>(null);
 
   const onLeft = (l: string) => setLeftSel(l);
   const onRight = (r: string) => {
     if (!leftSel) return;
     const correct = pairs.find((p) => p.left === leftSel && p.right === r);
-    if (correct) setMatched((m) => ({ ...m, [leftSel]: r }));
+    if (correct) {
+      setMatched((m) => ({ ...m, [leftSel]: r }));
+      setFeedback("🎉 Nối đúng rồi!");
+    } else {
+      setFeedback("💡 Chưa đúng. Thử lại nhé!");
+    }
     setLeftSel(null);
   };
 
   return (
-    <div className="mt-6 grid grid-cols-2 gap-4">
+    <div className="mt-6">
+      <div className="grid grid-cols-2 gap-4">
       <div>
         {pairs.map((p) => (
           <button key={p.left} onClick={() => onLeft(p.left)} disabled={!!matched[p.left]} className={`block w-full rounded-2xl p-3 mb-2 ${leftSel===p.left? 'ring-2 ring-[#C96A2B]': 'bg-[#EEF4FA]'} ${matched[p.left] ? 'opacity-50' : ''}`}>
@@ -458,6 +499,8 @@ function Matching({ pairs }: { pairs: readonly { left: string; right: string }[]
           <button key={p.right} onClick={() => onRight(p.right)} disabled={Object.values(matched).includes(p.right)} className="h-10 w-10 mb-3 rounded-full" style={{ background: p.right }} />
         ))}
       </div>
+      </div>
+      {feedback && <p className="mt-4 text-center font-bold text-[#294A3A]">{feedback}</p>}
     </div>
   );
 }
@@ -465,10 +508,10 @@ function Matching({ pairs }: { pairs: readonly { left: string; right: string }[]
 function MemoryActivity({ colors }: { colors: readonly string[] }) {
   const [hidden, setHidden] = useState(false);
   const target = colors[0];
+  const [feedback, setFeedback] = useState<string | null>(null);
 
   const handleChoice = (c: string) => {
-    if (c === target) alert("🌟 Bravo !");
-    else alert("💡 Thử lại nhé!");
+    setFeedback(c === target ? "🌟 Nhớ đúng rồi!" : "💡 Chưa đúng. Thử lại nhé!");
   };
 
   return (
@@ -493,6 +536,7 @@ function MemoryActivity({ colors }: { colors: readonly string[] }) {
               <button key={c} onClick={() => handleChoice(c)} className="rounded-2xl border p-4 font-semibold">{c}</button>
             ))}
           </div>
+          {feedback && <p className="mt-4 font-bold text-[#294A3A]">{feedback}</p>}
         </div>
       )}
     </div>
@@ -501,9 +545,9 @@ function MemoryActivity({ colors }: { colors: readonly string[] }) {
 
 function ObjectColor({ activity }: { activity: { object?: string; question?: string; answer?: string } }) {
   const options = ["rouge", "bleu", "jaune", "vert"];
+  const [feedback, setFeedback] = useState<string | null>(null);
   const handle = (o: string) => {
-    if (o === activity.answer) alert("🌟 Bravo !");
-    else alert("💡 Thử lại nhé!");
+    setFeedback(o === activity.answer ? "🌟 Đúng rồi!" : "💡 Chưa đúng. Thử lại nhé!");
   };
 
   return (
@@ -516,6 +560,7 @@ function ObjectColor({ activity }: { activity: { object?: string; question?: str
           <button key={o} onClick={() => handle(o)} className="rounded-2xl border p-4 font-semibold">{o}</button>
         ))}
       </div>
+      {feedback && <p className="mt-4 font-bold text-[#294A3A]">{feedback}</p>}
     </div>
   );
 }

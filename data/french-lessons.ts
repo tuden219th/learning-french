@@ -73,6 +73,7 @@ export const frenchLessons = {
         type: "review",
         title: "On se rappelle?",
         text: "Écoute et touche người bạn muốn.",
+        instruction: "🔊 Nghe rồi chạm vào câu bạn nghe.",
         // list of short review phrases
         reviewItems: [
           { text: "Bonjour !", translation: "Xin chào!", audioFile: "bonjour.mp3" },
@@ -90,6 +91,7 @@ export const frenchLessons = {
         translation: "đỏ",
         audioFile: "rouge.mp3",
         color: "#E63946",
+        instruction: "🔊 Nghe và nói: 'rouge' — màu đỏ.",
       },
 
       {
@@ -99,6 +101,7 @@ export const frenchLessons = {
         translation: "xanh dương",
         audioFile: "bleu.mp3",
         color: "#2874F0",
+        instruction: "🔊 Nghe và nói: 'bleu' — màu xanh dương.",
       },
 
       {
@@ -108,6 +111,7 @@ export const frenchLessons = {
         translation: "vàng",
         audioFile: "jaune.mp3",
         color: "#F4D35E",
+        instruction: "🔊 Nghe và nói: 'jaune' — màu vàng.",
       },
 
       {
@@ -117,6 +121,7 @@ export const frenchLessons = {
         translation: "xanh lá",
         audioFile: "vert.mp3",
         color: "#2ECC71",
+        instruction: "🔊 Nghe và nói: 'vert' — màu xanh lá.",
       },
 
       {
@@ -126,6 +131,7 @@ export const frenchLessons = {
         translation: "đen",
         audioFile: "noir.mp3",
         color: "#111111",
+        instruction: "🔊 Nghe và nói: 'noir' — màu đen.",
       },
 
       {
@@ -135,6 +141,7 @@ export const frenchLessons = {
         translation: "trắng",
         audioFile: "blanc.mp3",
         color: "#FFFFFF",
+        instruction: "🔊 Nghe và nói: 'blanc' — màu trắng.",
       },
 
       {
@@ -144,6 +151,7 @@ export const frenchLessons = {
         translation: "cam",
         // no recorded mp3 — TTS fallback
         color: "#FF8C42",
+        instruction: "🔊 Nghe và nói: 'orange' — màu cam.",
       },
 
       {
@@ -153,6 +161,7 @@ export const frenchLessons = {
         translation: "tím",
         // no recorded mp3 — TTS fallback
         color: "#8E44AD",
+        instruction: "🔊 Nghe và nói: 'violet' — màu tím.",
       },
 
       // PART 3: Play with colors — color hunt
@@ -160,6 +169,7 @@ export const frenchLessons = {
         type: "colorHunt",
         prompt: "Trouve le rouge !",
         target: "rouge",
+        instruction: "🎨 Hãy tìm màu đỏ! Chạm vào màu đúng.",
       },
 
       // listen and find
@@ -167,6 +177,7 @@ export const frenchLessons = {
         type: "colorHunt",
         prompt: "Écoute et montre le bleu.",
         target: "bleu",
+        instruction: "🔊 Nghe rồi chạm màu xanh dương.",
       },
 
       // matching
@@ -177,12 +188,14 @@ export const frenchLessons = {
           { left: "bleu", right: "#2874F0" },
           { left: "jaune", right: "#F4D35E" },
         ],
+        instruction: "🔗 Hãy nối từ tiếng Pháp với màu đúng.",
       },
 
       // memory (simple)
       {
         type: "memory",
         colors: ["rouge", "bleu", "jaune", "vert"],
+        instruction: "🧠 Tìm hai thẻ giống nhau.",
       },
 
       // object + color
@@ -191,6 +204,7 @@ export const frenchLessons = {
         object: "pomme",
         question: "De quelle couleur est la pomme ?",
         answer: "rouge",
+        instruction: "🍎 Quả táo màu gì? Chạm màu đúng.",
       },
 
       // PART 4: Mix old + new
@@ -199,6 +213,7 @@ export const frenchLessons = {
         text: "Bonjour ! Quelle couleur ?",
         promptColor: "bleu",
         audioFile: "bonjour.mp3",
+        instruction: "🔊 Nghe rồi chọn: màu xanh dương.",
       },
     ],
   },
