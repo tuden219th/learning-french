@@ -35,9 +35,20 @@ import {
   FamilySuperChallenge,
   FamilyTeachingRoom,
 } from "./FamilyActivities";
+import {
+  FoodBasket,
+  FoodChallenge,
+  FoodColor,
+  FoodCount,
+  FoodIntro,
+  FoodListen,
+  FoodSpeaking,
+  FoodTeaching,
+  FoodWorld,
+} from "./FoodActivities";
 
 type LessonStep = {
-  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission" | "numberIntro" | "numberDiscovery" | "numberListenFind" | "numberCount" | "numberAnimalColor" | "numberAnimal" | "numberSpeaking" | "numberSequence" | "numberChallenge" | "familyIntro" | "familySalon" | "familyFind" | "familyChambre" | "familyNumber" | "familyColor" | "familyAnimal" | "familySpeaking" | "familySecret" | "familyChallenge";
+  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission" | "numberIntro" | "numberDiscovery" | "numberListenFind" | "numberCount" | "numberAnimalColor" | "numberAnimal" | "numberSpeaking" | "numberSequence" | "numberChallenge" | "familyIntro" | "familySalon" | "familyFind" | "familyChambre" | "familyNumber" | "familyColor" | "familyAnimal" | "familySpeaking" | "familySecret" | "familyChallenge" | "foodIntro" | "foodTeach" | "foodBasket" | "foodListen" | "foodCount" | "foodColor" | "foodWorld" | "foodSpeaking" | "foodChallenge";
   title?: string;
   text?: string;
   translation?: string;
@@ -57,6 +68,7 @@ type LessonStep = {
   promptColor?: string;
   animals?: readonly { word: string; meaning: string; emoji: string }[];
   group?: readonly number[];
+  foodGroup?: readonly string[];
   options?: readonly {
     text: string;
     correct?: boolean;
@@ -78,6 +90,7 @@ type Lesson = {
   familyMembers?: readonly string[];
   completionBadge?: string;
   completionStars?: readonly string[];
+  completionFoods?: readonly string[];
 };
 
 export default function LessonShell({ lesson }: { lesson: Lesson }) {
@@ -180,6 +193,17 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
             <>
               <div className="mt-7 flex flex-wrap justify-center gap-3 text-4xl">
                 {lesson.familyMembers.map((member, index) => <span key={`${member}-${index}`}>{member}</span>)}
+              </div>
+              <p className="mt-5 text-gray-600">{lesson.completionText}</p>
+              <div className="mt-4 text-2xl">{lesson.completionStars?.join(" ")}</div>
+              <p className="mt-4 font-black text-[#C96A2B]">🏅 {lesson.completionBadge}</p>
+            </>
+          )}
+
+          {lesson.completionFoods && (
+            <>
+              <div className="mt-7 flex flex-wrap justify-center gap-3 text-4xl">
+                {lesson.completionFoods.map((food, index) => <span key={`${food}-${index}`}>{food}</span>)}
               </div>
               <p className="mt-5 text-gray-600">{lesson.completionText}</p>
               <div className="mt-4 text-2xl">{lesson.completionStars?.join(" ")}</div>
@@ -593,12 +617,30 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
 
           {step.type === "familyChallenge" && <FamilySuperChallenge onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
 
+          {step.type === "foodIntro" && <FoodIntro onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "foodTeach" && <FoodTeaching key={`food-teach-${stepIndex}`} group={step.foodGroup ?? []} onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "foodBasket" && <FoodBasket onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "foodListen" && <FoodListen onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "foodCount" && <FoodCount onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "foodColor" && <FoodColor onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "foodWorld" && <FoodWorld onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "foodSpeaking" && <FoodSpeaking onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "foodChallenge" && <FoodChallenge onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
         </section>
 
         {/* Bottom button */}
         <button
           onClick={next}
-          disabled={(step.type === "choice" && selected === null) || ((step.type.startsWith("number") || step.type.startsWith("family")) && !stepComplete)}
+          disabled={(step.type === "choice" && selected === null) || ((step.type.startsWith("number") || step.type.startsWith("family") || step.type.startsWith("food")) && !stepComplete)}
           className="mt-5 w-full rounded-2xl bg-[#C96A2B] px-6 py-4 text-lg font-bold text-white disabled:cursor-not-allowed disabled:opacity-40"
         >
           {stepIndex === lesson.steps.length - 1
