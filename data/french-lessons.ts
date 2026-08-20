@@ -265,4 +265,63 @@ export const frenchLessons = {
       },
     ],
   },
+  "nombres": {
+    title: "Les nombres",
+    subtitle: "La chasse aux nombres.",
+    emoji: "🔢",
+    completionTitle: "Tu comptes jusqu’à dix !",
+    completionText: "🔥 Et tu as essayé les grands nombres !",
+    completionNumbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    completionChallenge: "Défi spécial : réussi ⭐",
+    numberGroups: [[1, 2, 3], [4, 5, 6], [7, 8, 9, 10]],
+    steps: [
+      {
+        type: "numberIntro",
+        instruction: "🎯 Chào mừng đến cuộc săn tìm các con số!",
+      },
+      {
+        type: "numberDiscovery",
+        group: [1, 2, 3],
+        instruction: "🔢 Chạm vào các số 1–3 để nghe tiếng Pháp.",
+      },
+      {
+        type: "numberDiscovery",
+        group: [4, 5, 6],
+        instruction: "🔢 Chạm vào các số 4–6 để nghe tiếng Pháp.",
+      },
+      {
+        type: "numberDiscovery",
+        group: [7, 8, 9, 10],
+        instruction: "🔢 Chạm vào các số 7–10 để nghe tiếng Pháp.",
+      },
+      {
+        type: "numberListenFind",
+        instruction: "🔊 Nghe “cinq”, rồi chạm vào số đúng.",
+      },
+      {
+        type: "numberCount",
+        instruction: "🍎 Đếm các quả táo. Combien ?",
+      },
+      {
+        type: "numberAnimalColor",
+        instruction: "🔵 Trouve trois poissons bleus.",
+      },
+      {
+        type: "numberAnimal",
+        instruction: "🐶 Trouve trois chiens.",
+      },
+      {
+        type: "numberSpeaking",
+        instruction: "🎤 Nghe rồi nói: “trois”.",
+      },
+      {
+        type: "numberSequence",
+        instruction: "🔢 Điền số còn thiếu: 1 – 2 – ? – 4",
+      },
+      {
+        type: "numberChallenge",
+        instruction: "🔥 SUPER DÉFI: thử tìm 12, 15 và 20.",
+      },
+    ],
+  },
 } as const;

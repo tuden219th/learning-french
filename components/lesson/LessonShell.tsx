@@ -11,9 +11,20 @@ import {
   AnimalSoundActivity,
   AnimalSpeakingActivity,
 } from "./AnimalActivities";
+import {
+  CountChoose,
+  NumberAnimalColor,
+  NumberAnimal,
+  NumberChallenge,
+  NumberDiscovery,
+  NumberIntro,
+  NumberListenFind,
+  NumberSequence,
+  NumberSpeaking,
+} from "./NumberActivities";
 
 type LessonStep = {
-  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission";
+  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission" | "numberIntro" | "numberDiscovery" | "numberListenFind" | "numberCount" | "numberAnimalColor" | "numberAnimal" | "numberSpeaking" | "numberSequence" | "numberChallenge";
   title?: string;
   text?: string;
   translation?: string;
@@ -32,6 +43,7 @@ type LessonStep = {
   answer?: string;
   promptColor?: string;
   animals?: readonly { word: string; meaning: string; emoji: string }[];
+  group?: readonly number[];
   options?: readonly {
     text: string;
     correct?: boolean;
@@ -47,11 +59,15 @@ type Lesson = {
   completionTitle?: string;
   completionText?: string;
   completionAnimals?: readonly string[];
+  completionNumbers?: readonly number[];
+  completionChallenge?: string;
+  numberGroups?: readonly (readonly number[])[];
 };
 
 export default function LessonShell({ lesson }: { lesson: Lesson }) {
   const [stepIndex, setStepIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
+  const [stepComplete, setStepComplete] = useState(false);
   const [finished, setFinished] = useState(false);
 
   const step = lesson.steps[stepIndex];
@@ -59,6 +75,7 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
 
   function next() {
     setSelected(null);
+    setStepComplete(false);
 
     if (stepIndex < lesson.steps.length - 1) {
       setStepIndex((value) => value + 1);
@@ -67,8 +84,13 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
     }
   }
 
-  function playAudio(text?: string) {
+  function playAudio(text?: string, audioFile?: string) {
     if (typeof window === "undefined") return;
+
+    if (audioFile) {
+      playAudioFile(audioFile);
+      return;
+    }
 
     if (!text) return;
 
@@ -124,6 +146,20 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
             </>
           )}
 
+          {lesson.completionNumbers && (
+            <>
+              <div className="mt-7 flex flex-wrap justify-center gap-2 text-2xl font-black text-[#315A8D]">
+                {lesson.completionNumbers.map((number) => (
+                  <span key={number} className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EEF4FA]">
+                    {number}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-5 text-gray-600">{lesson.completionText}</p>
+              <p className="mt-3 font-black text-[#C96A2B]">{lesson.completionChallenge}</p>
+            </>
+          )}
+
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link
               href="/"
@@ -134,6 +170,7 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
             <button
               onClick={() => {
                 setStepIndex(0);
+                setStepComplete(false);
                 setFinished(false);
               }}
               className="rounded-2xl bg-[#C96A2B] px-6 py-3 font-bold text-white"
@@ -159,8 +196,9 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
             >
               🏠 Home
             </Link>
-            <span className="text-sm font-semibold text-gray-500">
-              Leçon {stepIndex + 1}/{lesson.steps.length}
+            <span className="text-center text-sm font-semibold text-gray-500">
+              <span className="block text-[#315A8D]">{lesson.title}</span>
+              Mission {stepIndex + 1}/{lesson.steps.length}
             </span>
 
             <span className="text-2xl">
@@ -488,12 +526,32 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
 
           {step.type === "animalMission" && <AnimalMission onSpeak={playAudio} />}
 
+          {step.type === "numberDiscovery" && (
+            <NumberDiscovery group={step.group ?? []} onSpeak={playAudio} onComplete={() => setStepComplete(true)} />
+          )}
+
+          {step.type === "numberIntro" && <NumberIntro onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "numberListenFind" && <NumberListenFind onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "numberCount" && <CountChoose onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "numberAnimalColor" && <NumberAnimalColor onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "numberAnimal" && <NumberAnimal onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "numberSpeaking" && <NumberSpeaking onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "numberSequence" && <NumberSequence onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "numberChallenge" && <NumberChallenge onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
         </section>
 
         {/* Bottom button */}
         <button
           onClick={next}
-          disabled={step.type === "choice" && selected === null}
+          disabled={(step.type === "choice" && selected === null) || (step.type.startsWith("number") && !stepComplete)}
           className="mt-5 w-full rounded-2xl bg-[#C96A2B] px-6 py-4 text-lg font-bold text-white disabled:cursor-not-allowed disabled:opacity-40"
         >
           {stepIndex === lesson.steps.length - 1

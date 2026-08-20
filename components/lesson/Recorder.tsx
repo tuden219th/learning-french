@@ -5,11 +5,13 @@ import { useEffect, useRef, useState } from "react";
 type RecorderProps = {
   phrase: string;
   translation?: string;
+  onComplete?: () => void;
 };
 
 export default function Recorder({
   phrase,
   translation,
+  onComplete,
 }: RecorderProps) {
   const [recording, setRecording] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
@@ -57,6 +59,7 @@ export default function Recorder({
 
           return url;
         });
+        onComplete?.();
 
         stream.getTracks().forEach((track) => track.stop());
         streamRef.current = null;
