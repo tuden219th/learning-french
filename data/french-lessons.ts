@@ -217,4 +217,52 @@ export const frenchLessons = {
       },
     ],
   },
+  "animaux": {
+    title: "Les animaux",
+    subtitle: "Một cuộc phiêu lưu trong khu rừng nhỏ.",
+    emoji: "🐾",
+    completionTitle: "Tu as découvert les animaux !",
+    completionText: "Super ! Tu es un petit explorateur ! 🐾",
+    completionAnimals: ["🐶", "🐱", "🐰", "🐦", "🐟", "🐢"],
+    animals: [
+      { word: "le chat", meaning: "con mèo", emoji: "🐱" },
+      { word: "le chien", meaning: "con chó", emoji: "🐶" },
+      { word: "le lapin", meaning: "con thỏ", emoji: "🐰" },
+      { word: "l’oiseau", meaning: "con chim", emoji: "🐦" },
+      { word: "le poisson", meaning: "con cá", emoji: "🐟" },
+      { word: "la souris", meaning: "con chuột", emoji: "🐭" },
+      { word: "la tortue", meaning: "con rùa", emoji: "🐢" },
+      { word: "le lion", meaning: "con sư tử", emoji: "🦁" },
+    ],
+    steps: [
+      {
+        type: "animalDiscovery",
+        instruction: "🐾 Chạm vào từng con vật để nghe tên tiếng Pháp.",
+      },
+      {
+        type: "animalChoice",
+        instruction: "🔊 Nghe: “le chien”. Chạm vào con vật đúng.",
+      },
+      {
+        type: "animalColor",
+        instruction: "🎨 Le chat est bleu. Chạm vào con mèo màu xanh dương.",
+      },
+      {
+        type: "animalSound",
+        instruction: "🔊 Nghe tiếng kêu. Qui est-ce? Chọn con vật đúng.",
+      },
+      {
+        type: "animalSpeaking",
+        instruction: "🎤 Nghe rồi nói: “le chat”.",
+      },
+      {
+        type: "animalSentence",
+        instruction: "👋 Nghe câu rồi chọn bạn nhỏ trong câu.",
+      },
+      {
+        type: "animalMission",
+        instruction: "🐾 Hoàn thành 4 nhiệm vụ để giúp các con vật về nhà.",
+      },
+    ],
+  },
 } as const;

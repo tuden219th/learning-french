@@ -1,9 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import {
+  AnimalChoice,
+  AnimalColorActivity,
+  AnimalDiscovery,
+  AnimalMission,
+  AnimalSentenceActivity,
+  AnimalSoundActivity,
+  AnimalSpeakingActivity,
+} from "./AnimalActivities";
 
 type LessonStep = {
-  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix";
+  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission";
   title?: string;
   text?: string;
   translation?: string;
@@ -21,6 +31,7 @@ type LessonStep = {
   question?: string;
   answer?: string;
   promptColor?: string;
+  animals?: readonly { word: string; meaning: string; emoji: string }[];
   options?: readonly {
     text: string;
     correct?: boolean;
@@ -32,6 +43,10 @@ type Lesson = {
   subtitle: string;
   emoji: string;
   steps: readonly LessonStep[];
+  animals?: readonly { word: string; meaning: string; emoji: string }[];
+  completionTitle?: string;
+  completionText?: string;
+  completionAnimals?: readonly string[];
 };
 
 export default function LessonShell({ lesson }: { lesson: Lesson }) {
@@ -90,18 +105,42 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
           </h1>
 
           <p className="mt-3 text-lg text-gray-600">
-            Tu as terminé la leçon !
+            {lesson.completionTitle ?? "Tu as terminé la leçon !"}
           </p>
 
-          <button
-            onClick={() => {
-              setStepIndex(0);
-              setFinished(false);
-            }}
-            className="mt-8 rounded-2xl bg-[#C96A2B] px-6 py-3 font-bold text-white"
-          >
-            Recommencer
-          </button>
+          {lesson.completionAnimals && (
+            <>
+              <div className="mt-7 flex flex-wrap justify-center gap-3 text-4xl">
+                {lesson.completionAnimals.map((animal, index) => (
+                  <span key={`${animal}-${index}`}>{animal}</span>
+                ))}
+              </div>
+              <p className="mt-4 font-bold text-[#315A8D]">
+                {lesson.completionAnimals.length} animaux découverts !
+              </p>
+              <p className="mt-2 text-gray-600">
+                {lesson.completionText}
+              </p>
+            </>
+          )}
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <Link
+              href="/"
+              className="rounded-2xl bg-[#315A8D] px-6 py-3 font-bold text-white"
+            >
+              🏠 Về trang chủ
+            </Link>
+            <button
+              onClick={() => {
+                setStepIndex(0);
+                setFinished(false);
+              }}
+              className="rounded-2xl bg-[#C96A2B] px-6 py-3 font-bold text-white"
+            >
+              🔄 Học lại
+            </button>
+          </div>
         </div>
       </main>
     );
@@ -113,7 +152,13 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
 
         {/* Header */}
         <div className="mb-6">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-3">
+            <Link
+              href="/"
+              className="rounded-full border border-[#E9DDC8] bg-white px-4 py-2 text-sm font-bold text-[#315A8D]"
+            >
+              🏠 Home
+            </Link>
             <span className="text-sm font-semibold text-gray-500">
               Leçon {stepIndex + 1}/{lesson.steps.length}
             </span>
@@ -418,6 +463,30 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
               </div>
             </div>
           )}
+
+          {step.type === "animalDiscovery" && (
+            <AnimalDiscovery animals={lesson.animals ?? []} onSpeak={playAudio} />
+          )}
+
+          {step.type === "animalChoice" && (
+            <AnimalChoice animals={lesson.animals ?? []} onSpeak={playAudio} />
+          )}
+
+          {step.type === "animalColor" && (
+            <AnimalColorActivity onSpeak={playAudio} />
+          )}
+
+          {step.type === "animalSound" && (
+            <AnimalSoundActivity animals={lesson.animals ?? []} onSpeak={playAudio} />
+          )}
+
+          {step.type === "animalSpeaking" && <AnimalSpeakingActivity />}
+
+          {step.type === "animalSentence" && (
+            <AnimalSentenceActivity onSpeak={playAudio} />
+          )}
+
+          {step.type === "animalMission" && <AnimalMission onSpeak={playAudio} />}
 
         </section>
 
