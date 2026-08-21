@@ -1,32 +1,86 @@
 <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 600 420"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 800 560"
     >
-      <rect
-        width="600"
-        height="420"
-        rx="32"
-        fill="#FFF7ED"
-      />
+        
+    <rect
+        width="800"
+        height="560"
+        rx="38"
+        fill="#FFF8EF"
+    />
 
-      <text
-        x="300"
-        y="215"
-        text-anchor="middle"
-        font-size="120"
-      >
-        🐶
-      </text>
+    <circle
+        cx="690"
+        cy="78"
+        r="34"
+        fill="#FFD166"
+    />
 
-      <text
-        x="300"
-        y="330"
-        text-anchor="middle"
-        font-family="Arial, sans-serif"
-        font-size="30"
-        font-weight="700"
-        fill="#3B2416"
-      >
-        Le chien
-      </text>
+    <path
+        d="M0 470 Q200 430 400 470 T800 470 V560 H0 Z"
+        fill="#F3E3D0"
+    />
+    
+
+        
+    <g>
+        <ellipse
+            cx="400"
+            cy="303"
+            rx="70"
+            ry="18"
+            fill="#E8D5BF"
+        />
+
+        <ellipse
+            cx="400"
+            cy="245"
+            rx="50"
+            ry="45"
+            fill="#C58B5C"
+        />
+
+        <ellipse
+            cx="352"
+            cy="243"
+            rx="18"
+            ry="35"
+            fill="#8B5E3C"
+            transform="rotate(-15 352 243)"
+        />
+
+        <ellipse
+            cx="448"
+            cy="243"
+            rx="18"
+            ry="35"
+            fill="#8B5E3C"
+            transform="rotate(15 448 243)"
+        />
+
+        <circle cx="384" cy="240" r="5" fill="#3B2416"/>
+        <circle cx="416" cy="240" r="5" fill="#3B2416"/>
+
+        <ellipse
+            cx="400"
+            cy="262"
+            rx="12"
+            ry="9"
+            fill="#3B2416"
+        />
+    </g>
+    
+
+        <text
+            x="400"
+            y="390"
+            text-anchor="middle"
+            font-family="Arial, sans-serif"
+            font-size="32"
+            font-weight="700"
+            fill="#3B2416"
+        >
+            le chien
+        </text>
     </svg>

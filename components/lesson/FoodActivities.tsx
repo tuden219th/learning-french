@@ -24,7 +24,7 @@ export const picnicFoods: readonly Food[] = [
   { id: "fromage", word: "fromage", meaning: "phô mai", emoji: "🧀", audioFile: "fromage.mp3" },
   { id: "fraise", word: "fraise", meaning: "quả dâu", emoji: "🍓", audioFile: "fraise.mp3" },
   { id: "eau", word: "eau", meaning: "nước", emoji: "💧", audioFile: "eau.mp3" },
-  { id: "gateau", word: "gâteau", meaning: "bánh ngọt", emoji: "🍰", audioFile: "gateau.mp3" },
+  { id: "gateau", word: "gâteau", meaning: "bánh ngọt", emoji: "🍰", audioFile: "gâteau.mp3" },
 ];
 
 export function FoodIntro({ onSpeak, onComplete }: FoodProps) {

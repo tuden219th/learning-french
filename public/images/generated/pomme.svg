@@ -1,0 +1,79 @@
+<svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 800 560"
+    >
+        
+    <rect
+        width="800"
+        height="560"
+        rx="38"
+        fill="#FFF8EF"
+    />
+
+    <circle
+        cx="690"
+        cy="78"
+        r="34"
+        fill="#FFD166"
+    />
+
+    <path
+        d="M0 470 Q200 430 400 470 T800 470 V560 H0 Z"
+        fill="#F3E3D0"
+    />
+    
+
+        
+    <g>
+        <ellipse
+            cx="400"
+            cy="310"
+            rx="72"
+            ry="17"
+            fill="#E8D5BF"
+        />
+
+        <path
+            d="
+                M 400 232
+                C 345 198 328 275 400 312
+                C 472 275 455 198 400 232
+                Z
+            "
+            fill="#EF5350"
+        />
+
+        <path
+            d="
+                M 400 230
+                Q 405 195 430 185
+            "
+            fill="none"
+            stroke="#6B4226"
+            stroke-width="9"
+            stroke-linecap="round"
+        />
+
+        <ellipse
+            cx="438"
+            cy="190"
+            rx="22"
+            ry="10"
+            fill="#6FBF73"
+            transform="rotate(-20 438 190)"
+        />
+    </g>
+    
+
+        <text
+            x="400"
+            y="395"
+            text-anchor="middle"
+            font-family="Arial, sans-serif"
+            font-size="32"
+            font-weight="700"
+            fill="#3B2416"
+        >
+            pomme
+        </text>
+    </svg>

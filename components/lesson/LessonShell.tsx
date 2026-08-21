@@ -102,6 +102,70 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
   const step = lesson.steps[stepIndex];
   const progress = ((stepIndex + 1) / lesson.steps.length) * 100;
 
+  const frenchAudioFiles: Record<string, string> = {
+    "bonjour": "bonjour.mp3",
+    "salut": "salut.mp3",
+    "comment ca va": "ça-va.mp3",
+    "ca va bien": "ça-va-bien.mp3",
+    "je m appelle leo": "je-mappelle-léo.mp3",
+    "rouge": "rouge.mp3",
+    "bleu": "bleu.mp3",
+    "jaune": "jaune.mp3",
+    "vert": "vert.mp3",
+    "noir": "noir.mp3",
+    "blanc": "blanc.mp3",
+    "orange": "orange.mp3",
+    "violet": "violet.mp3",
+    "le chat": "le-chat.mp3",
+    "le chien": "le-chien.mp3",
+    "le lapin": "le-lapin.mp3",
+    "l oiseau": "loiseau.mp3",
+    "le poisson": "le-poisson.mp3",
+    "la souris": "la-souris.mp3",
+    "la tortue": "la-tortue.mp3",
+    "le lion": "le-lion.mp3",
+    "le chat est bleu": "le-chat-est-bleu.mp3",
+    "miaou": "miaou.mp3",
+    "bonjour petit lapin": "bonjour-petit-lapin.mp3",
+    "bonjour le chien": "bonjour-le-chien.mp3",
+    "maman": "maman.mp3",
+    "papa": "papa.mp3",
+    "frere": "frère.mp3",
+    "soeur": "sœur.mp3",
+    "bebe": "bébé.mp3",
+    "grand pere": "grand-père.mp3",
+    "grand mere": "grand-mère.mp3",
+    "famille": "famille.mp3",
+    "bonjour maman": "bonjour-maman.mp3",
+    "bonjour papa": "bonjour-papa.mp3",
+    "bonjour frere": "bonjour-frère.mp3",
+    "bonjour soeur": "bonjour-sœur.mp3",
+    "pomme": "pomme.mp3",
+    "banane": "banane.mp3",
+    "pain": "pain.mp3",
+    "lait": "lait.mp3",
+    "fromage": "fromage.mp3",
+    "fraise": "fraise.mp3",
+    "eau": "eau.mp3",
+    "gateau": "gâteau.mp3",
+    "pique nique": "pique-nique.mp3",
+  };
+
+  function normalizeFrench(text: string) {
+    return text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[’']/g, " ")
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim()
+      .replace(/\s+/g, " ");
+  }
+
+  function slugifyFrench(text: string) {
+    return normalizeFrench(text).replace(/ /g, "-") || "audio";
+  }
+
   function next() {
     setSelected(null);
     setStepComplete(false);
@@ -116,33 +180,27 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
   function playAudio(text?: string, audioFile?: string) {
     if (typeof window === "undefined") return;
 
-    if (audioFile) {
-      playAudioFile(audioFile, text);
+    const resolvedFile = audioFile ?? frenchAudioFiles[normalizeFrench(text ?? "")];
+
+    if (!resolvedFile) {
+      console.warn(`[French Audio Missing] /audio/fr/${slugifyFrench(text ?? "audio")}.mp3`);
       return;
     }
 
-    if (!text) return;
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "fr-FR";
-    utterance.rate = 0.9;
-
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utterance);
+    playAudioFile(resolvedFile);
   }
 
-  function playAudioFile(file?: string, fallbackText?: string) {
+  function playAudioFile(file?: string) {
     if (!file || typeof window === "undefined") return;
 
-    try {
-      const url = `/audio/fr/${encodeURIComponent(file)}`;
-      const audio = new Audio(url);
-      audio.play().catch(() => {
-        if (fallbackText) playAudio(fallbackText);
-      });
-    } catch {
-      if (fallbackText) playAudio(fallbackText);
-    }
+    const url = `/audio/fr/${encodeURIComponent(file)}`;
+    const audio = new Audio(url);
+    audio.addEventListener("error", () => {
+      console.warn(`[French Audio Missing] ${url}`);
+    }, { once: true });
+    audio.play().catch(() => {
+      console.warn(`[French Audio Missing] ${url}`);
+    });
   }
 
   if (finished) {

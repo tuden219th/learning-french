@@ -35,12 +35,12 @@ export const frenchLessons = {
         title: "Je m'appelle...",
         text: "Je m'appelle Léo.",
         translation: "Mình tên là Léo.",
-        // no recorded mp3 for this phrase — fallback to TTS
+        audioFile: "je-mappelle-léo.mp3",
       },
 
       {
         type: "choice",
-        // no specific mp3 here — TTS will be used
+        audioFile: "je-mappelle-léo.mp3",
         options: [
           { text: "Je m'appelle Léo.", correct: true },
           { text: "Ça va bien.", correct: false },
@@ -149,7 +149,7 @@ export const frenchLessons = {
         title: "Orange",
         text: "orange",
         translation: "cam",
-        // no recorded mp3 — TTS fallback
+        audioFile: "orange.mp3",
         color: "#FF8C42",
         instruction: "🔊 Nghe và nói: 'orange' — màu cam.",
       },
@@ -159,7 +159,7 @@ export const frenchLessons = {
         title: "Violet",
         text: "violet",
         translation: "tím",
-        // no recorded mp3 — TTS fallback
+        audioFile: "violet.mp3",
         color: "#8E44AD",
         instruction: "🔊 Nghe và nói: 'violet' — màu tím.",
       },

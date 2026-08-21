@@ -19,14 +19,14 @@ type FamilyProps = {
 export const familySalonMembers: readonly FamilyMember[] = [
   { id: "maman", word: "maman", meaning: "mẹ", emoji: "👩", audioFile: "maman.mp3" },
   { id: "papa", word: "papa", meaning: "bố", emoji: "👨", audioFile: "papa.mp3" },
-  { id: "frere", word: "frère", meaning: "anh/em trai", emoji: "👦", audioFile: "frere.mp3" },
-  { id: "soeur", word: "sœur", meaning: "chị/em gái", emoji: "👧", audioFile: "soeur.mp3" },
+  { id: "frere", word: "frère", meaning: "anh/em trai", emoji: "👦", audioFile: "frère.mp3" },
+  { id: "soeur", word: "sœur", meaning: "chị/em gái", emoji: "👧", audioFile: "sœur.mp3" },
 ];
 
 export const familyBedroomMembers: readonly FamilyMember[] = [
-  { id: "bebe", word: "bébé", meaning: "em bé", emoji: "👶", audioFile: "bebe.mp3" },
-  { id: "grand-pere", word: "grand-père", meaning: "ông", emoji: "👴", audioFile: "grand-pere.mp3" },
-  { id: "grand-mere", word: "grand-mère", meaning: "bà", emoji: "👵", audioFile: "grand-mere.mp3" },
+  { id: "bebe", word: "bébé", meaning: "em bé", emoji: "👶", audioFile: "bébé.mp3" },
+  { id: "grand-pere", word: "grand-père", meaning: "ông", emoji: "👴", audioFile: "grand-père.mp3" },
+  { id: "grand-mere", word: "grand-mère", meaning: "bà", emoji: "👵", audioFile: "grand-mère.mp3" },
 ];
 
 const salonMembers = familySalonMembers;

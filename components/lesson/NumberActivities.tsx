@@ -130,9 +130,9 @@ export function CountChoose({ onSpeak, onComplete }: NumberActivitiesProps) {
 export function NumberAnimalColor({ onSpeak, onComplete }: NumberActivitiesProps) {
   const [selected, setSelected] = useState<string | null>(null);
   const options = [
-    { id: "blue", label: "3 poissons bleus", count: 3, color: "#2874F0", fish: "🐟" },
-    { id: "red", label: "5 poissons rouges", count: 5, color: "#E63946", fish: "🐟" },
-    { id: "yellow", label: "2 poissons jaunes", count: 2, color: "#F4D35E", fish: "🐟" },
+    { id: "blue", label: "3 poissons bleus", phrase: "trois poissons bleus", audioFile: "trois-poissons-bleus.mp3", count: 3, color: "#2874F0", fish: "🐟" },
+    { id: "red", label: "5 poissons rouges", phrase: "cinq poissons rouges", audioFile: "cinq-poissons-rouges.mp3", count: 5, color: "#E63946", fish: "🐟" },
+    { id: "yellow", label: "2 poissons jaunes", phrase: "deux poissons jaunes", audioFile: "deux-poissons-jaunes.mp3", count: 2, color: "#F4D35E", fish: "🐟" },
   ];
   const answer = "blue";
 
@@ -141,7 +141,7 @@ export function NumberAnimalColor({ onSpeak, onComplete }: NumberActivitiesProps
       <NumberHeading icon="🐟" title="Nombres et couleurs" instruction="🔵 Trouve trois poissons bleus." />
       <div className="grid gap-3 sm:grid-cols-3">
         {options.map((option) => (
-          <button key={option.id} type="button" onClick={() => { setSelected(option.id); onSpeak(`${option.count} poissons ${option.id === "blue" ? "bleus" : option.id === "red" ? "rouges" : "jaunes"}`); if (option.id === answer) onComplete?.(); }} className={`rounded-3xl border-2 p-4 ${selected === option.id ? option.id === answer ? "border-[#4F8A5B] bg-[#EAF5EC]" : "border-[#D94A4A] bg-[#FFF0F0]" : "border-[#E9DDC8] bg-white"}`}>
+          <button key={option.id} type="button" onClick={() => { setSelected(option.id); onSpeak(option.phrase, option.audioFile); if (option.id === answer) onComplete?.(); }} className={`rounded-3xl border-2 p-4 ${selected === option.id ? option.id === answer ? "border-[#4F8A5B] bg-[#EAF5EC]" : "border-[#D94A4A] bg-[#FFF0F0]" : "border-[#E9DDC8] bg-white"}`}>
             <div className="flex min-h-20 flex-wrap justify-center gap-1 rounded-2xl p-2" style={{ background: `${option.color}20` }}>
               {Array.from({ length: option.count }, (_, index) => <span key={index} className="text-3xl">{option.fish}</span>)}
             </div>

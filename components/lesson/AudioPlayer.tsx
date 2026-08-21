@@ -12,6 +12,9 @@ export default function AudioPlayer({
   label = "Nghe mẫu",
 }: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const audioSrc = src.startsWith("/")
+    ? src
+    : `/audio/fr/${encodeURIComponent(src)}`;
 
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -139,14 +142,17 @@ export default function AudioPlayer({
     <div className="rounded-[2rem] border border-[#DCE7F2] bg-[#EEF4FA] p-5 shadow-sm sm:p-6">
       <audio
         ref={audioRef}
-        src={src}
+        src={audioSrc}
         preload="metadata"
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onLoadedMetadata={handleLoadedMetadata}
         onTimeUpdate={handleTimeUpdate}
         onEnded={handleEnded}
-        onError={handleError}
+        onError={() => {
+          handleError();
+          console.warn(`[French Audio Missing] ${audioSrc}`);
+        }}
       />
 
       <div className="flex items-center gap-4">
