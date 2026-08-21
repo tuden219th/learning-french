@@ -368,4 +368,23 @@ export const frenchLessons = {
       { type: "foodChallenge", instruction: "🔐 Hoàn thành giỏ bí mật: pomme, fraise và eau." },
     ],
   },
+  "objets-de-la-classe": {
+    title: "Les objets de la classe",
+    subtitle: "Đồ vật trong lớp học.",
+    emoji: "🏫",
+    completionTitle: "Tu connais les objets de la classe !",
+    completionText: "Bravo ! Con đã học những đồ vật đầu tiên trong lớp học.",
+    completionBadge: "Petit élève",
+    completionStars: ["⭐", "⭐", "⭐"],
+    steps: [
+      { type: "classDiscovery", instruction: "🏫 Khám phá các đồ vật trong lớp học." },
+      { type: "classChoice", instruction: "👂 Nghe và chọn đúng đồ vật." },
+      { type: "classMatching", instruction: "🔗 Nối từ tiếng Pháp với đồ vật đúng." },
+      { type: "classMemory", instruction: "🧠 Ghi nhớ vị trí các đồ vật." },
+      { type: "classObjectColor", instruction: "🎨 Nghe câu và chọn đồ vật cùng màu." },
+      { type: "classCount", instruction: "🔢 Đếm đồ vật và chọn số đúng." },
+      { type: "classSpeaking", instruction: "🎤 Nghe mẫu rồi nói: C'est un livre." },
+      { type: "classMission", instruction: "🏆 Hoàn thành nhiệm vụ cuối trong lớp học." },
+    ],
+  },
 } as const;

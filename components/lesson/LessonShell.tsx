@@ -46,9 +46,19 @@ import {
   FoodTeaching,
   FoodWorld,
 } from "./FoodActivities";
+import {
+  ClassroomChoice,
+  ClassroomCount,
+  ClassroomDiscovery,
+  ClassroomMatching,
+  ClassroomMemory,
+  ClassroomMission,
+  ClassroomObjectColor,
+  ClassroomSpeaking,
+} from "./ClassroomActivities";
 
 type LessonStep = {
-  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission" | "numberIntro" | "numberDiscovery" | "numberListenFind" | "numberCount" | "numberAnimalColor" | "numberAnimal" | "numberSpeaking" | "numberSequence" | "numberChallenge" | "familyIntro" | "familySalon" | "familyFind" | "familyChambre" | "familyNumber" | "familyColor" | "familyAnimal" | "familySpeaking" | "familySecret" | "familyChallenge" | "foodIntro" | "foodTeach" | "foodBasket" | "foodListen" | "foodCount" | "foodColor" | "foodWorld" | "foodSpeaking" | "foodChallenge";
+  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission" | "numberIntro" | "numberDiscovery" | "numberListenFind" | "numberCount" | "numberAnimalColor" | "numberAnimal" | "numberSpeaking" | "numberSequence" | "numberChallenge" | "familyIntro" | "familySalon" | "familyFind" | "familyChambre" | "familyNumber" | "familyColor" | "familyAnimal" | "familySpeaking" | "familySecret" | "familyChallenge" | "foodIntro" | "foodTeach" | "foodBasket" | "foodListen" | "foodCount" | "foodColor" | "foodWorld" | "foodSpeaking" | "foodChallenge" | "classDiscovery" | "classChoice" | "classMatching" | "classMemory" | "classObjectColor" | "classCount" | "classSpeaking" | "classMission";
   title?: string;
   text?: string;
   translation?: string;
@@ -149,6 +159,31 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
     "eau": "eau.mp3",
     "gateau": "gâteau.mp3",
     "pique nique": "pique-nique.mp3",
+    "un livre": "un-livre.mp3",
+    "un cahier": "un-cahier.mp3",
+    "un crayon": "un-crayon.mp3",
+    "un stylo": "un-stylo.mp3",
+    "une gomme": "une-gomme.mp3",
+    "une regle": "une-regle.mp3",
+    "un sac": "un-sac.mp3",
+    "une table": "une-table.mp3",
+    "une chaise": "une-chaise.mp3",
+    "un tableau": "un-tableau.mp3",
+    "c est un livre": "c-est-un-livre.mp3",
+    "c est un cahier": "c-est-un-cahier.mp3",
+    "c est un crayon": "c-est-un-crayon.mp3",
+    "c est un stylo": "c-est-un-stylo.mp3",
+    "c est une gomme": "c-est-une-gomme.mp3",
+    "c est une regle": "c-est-une-regle.mp3",
+    "c est un sac": "c-est-un-sac.mp3",
+    "c est une table": "c-est-une-table.mp3",
+    "c est une chaise": "c-est-une-chaise.mp3",
+    "c est un tableau": "c-est-un-tableau.mp3",
+    "le livre est rouge": "le-livre-est-rouge.mp3",
+    "le crayon est bleu": "le-crayon-est-bleu.mp3",
+    "la gomme est blanche": "la-gomme-est-blanche.mp3",
+    "trois crayons": "trois-crayons.mp3",
+    "deux livres": "deux-livres.mp3",
   };
 
   function normalizeFrench(text: string) {
@@ -693,12 +728,28 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
 
           {step.type === "foodChallenge" && <FoodChallenge onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
 
+          {step.type === "classDiscovery" && <ClassroomDiscovery onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "classChoice" && <ClassroomChoice onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "classMatching" && <ClassroomMatching onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "classMemory" && <ClassroomMemory onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "classObjectColor" && <ClassroomObjectColor onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "classCount" && <ClassroomCount onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "classSpeaking" && <ClassroomSpeaking onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
+          {step.type === "classMission" && <ClassroomMission onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
+
         </section>
 
         {/* Bottom button */}
         <button
           onClick={next}
-          disabled={(step.type === "choice" && selected === null) || ((step.type.startsWith("number") || step.type.startsWith("family") || step.type.startsWith("food")) && !stepComplete)}
+          disabled={(step.type === "choice" && selected === null) || ((step.type.startsWith("number") || step.type.startsWith("family") || step.type.startsWith("food") || step.type.startsWith("class")) && !stepComplete)}
           className="mt-5 w-full rounded-2xl bg-[#C96A2B] px-6 py-4 text-lg font-bold text-white disabled:cursor-not-allowed disabled:opacity-40"
         >
           {stepIndex === lesson.steps.length - 1
