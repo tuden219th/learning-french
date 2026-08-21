@@ -1,0 +1,53 @@
+<svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 800 560"
+    >
+        
+    <rect
+        width="800"
+        height="560"
+        rx="38"
+        fill="#FFF8EF"
+    />
+
+    <circle
+        cx="690"
+        cy="78"
+        r="34"
+        fill="#FFD166"
+    />
+
+    <path
+        d="M0 470 Q200 430 400 470 T800 470 V560 H0 Z"
+        fill="#F3E3D0"
+    />
+    
+
+        <circle
+            cx="400"
+            cy="245"
+            r="90"
+            fill="#FDE68A"
+        />
+
+        <text
+            x="400"
+            y="278"
+            text-anchor="middle"
+            font-size="85"
+        >
+            🇫🇷
+        </text>
+
+        <text
+            x="400"
+            y="405"
+            text-anchor="middle"
+            font-family="Arial, sans-serif"
+            font-size="30"
+            font-weight="700"
+            fill="#3B2416"
+        >
+            Comme ci, comme ça
+        </text>
+    </svg>

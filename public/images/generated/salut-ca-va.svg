@@ -24,322 +24,10 @@
     
 
         
-    <ellipse
-        cx="245"
-        cy="475"
-        rx="72"
-        ry="14"
-        fill="#E8D5BF"
-    />
-    
-
-    <path
-        d="
-            M 200 247
-            Q 245 183 290 247
-            L 283 280
-            Q 245 260 207 280
-            Z
-        "
-        fill="#5A3825"
-    />
-    
-
-    <circle
-        cx="245"
-        cy="250"
-        r="43"
-        fill="#F3C7A5"
-    />
-    
-
-    <path
-        d="
-            M 202 245
-            Q 225 195 287 242
-            Q 260 223 233 230
-            Q 215 236 202 245
-            Z
-        "
-        fill="#5A3825"
-    />
-    
-
-        <path
-            d="M 225 252 Q 232 245 239 252"
-            fill="none"
-            stroke="#3B2416"
-            stroke-width="5"
-            stroke-linecap="round"
-        />
-
-        <path
-            d="M 251 252 Q 258 245 265 252"
-            fill="none"
-            stroke="#3B2416"
-            stroke-width="5"
-            stroke-linecap="round"
-        />
-        
-
-        <path
-            d="
-                M 231 270
-                Q 245 285 259 270
-            "
-            fill="none"
-            stroke="#3B2416"
-            stroke-width="5"
-            stroke-linecap="round"
-        />
-        
-
-    <path
-        d="
-            M 200 312
-            Q 245 282 290 312
-            L 299 432
-            L 191 432
-            Z
-        "
-        fill="#62A5F5"
-    />
-    
-
-        <path
-            d="
-                M 203 332
-                Q 180 377 187 417
-            "
-            fill="none"
-            stroke="#F3C7A5"
-            stroke-width="18"
-            stroke-linecap="round"
-        />
-
-        <circle
-            cx="187"
-            cy="420"
-            r="10"
-            fill="#F3C7A5"
-        />
-
-        <path
-            d="
-                M 287 332
-                Q 310 377 303 417
-            "
-            fill="none"
-            stroke="#F3C7A5"
-            stroke-width="18"
-            stroke-linecap="round"
-        />
-
-        <circle
-            cx="303"
-            cy="420"
-            r="10"
-            fill="#F3C7A5"
-        />
-        
-
-    <path
-        d="
-            M 225 427
-            L 217 490
-        "
-        stroke="#4B5563"
-        stroke-width="17"
-        stroke-linecap="round"
-    />
-
-    <path
-        d="
-            M 265 427
-            L 273 490
-        "
-        stroke="#4B5563"
-        stroke-width="17"
-        stroke-linecap="round"
-    />
-
-    <ellipse
-        cx="207"
-        cy="495"
-        rx="22"
-        ry="10"
-        fill="#3B2416"
-    />
-
-    <ellipse
-        cx="283"
-        cy="495"
-        rx="22"
-        ry="10"
-        fill="#3B2416"
-    />
-    
-
-        
-    <ellipse
-        cx="555"
-        cy="475"
-        rx="72"
-        ry="14"
-        fill="#E8D5BF"
-    />
-    
-
-    <path
-        d="
-            M 510 247
-            Q 555 183 600 247
-            L 593 280
-            Q 555 260 517 280
-            Z
-        "
-        fill="#3D2A20"
-    />
-    
-
-    <circle
-        cx="555"
-        cy="250"
-        r="43"
-        fill="#D8A276"
-    />
-    
-
-    <path
-        d="
-            M 512 245
-            Q 535 195 597 242
-            Q 570 223 543 230
-            Q 525 236 512 245
-            Z
-        "
-        fill="#3D2A20"
-    />
-    
-
-        <path
-            d="M 535 252 Q 542 245 549 252"
-            fill="none"
-            stroke="#3B2416"
-            stroke-width="5"
-            stroke-linecap="round"
-        />
-
-        <path
-            d="M 561 252 Q 568 245 575 252"
-            fill="none"
-            stroke="#3B2416"
-            stroke-width="5"
-            stroke-linecap="round"
-        />
-        
-
-        <path
-            d="
-                M 541 270
-                Q 555 285 569 270
-            "
-            fill="none"
-            stroke="#3B2416"
-            stroke-width="5"
-            stroke-linecap="round"
-        />
-        
-
-    <path
-        d="
-            M 510 312
-            Q 555 282 600 312
-            L 609 432
-            L 501 432
-            Z
-        "
-        fill="#39C99A"
-    />
-    
-
-        <path
-            d="
-                M 513 332
-                Q 475 307 450 277
-            "
-            fill="none"
-            stroke="#D8A276"
-            stroke-width="18"
-            stroke-linecap="round"
-        />
-        <circle
-            cx="447"
-            cy="274"
-            r="10"
-            fill="#D8A276"
-        />
-
-        <path
-            d="
-                M 597 332
-                Q 635 307 660 277
-            "
-            fill="none"
-            stroke="#D8A276"
-            stroke-width="18"
-            stroke-linecap="round"
-        />
-        <circle
-            cx="663"
-            cy="274"
-            r="10"
-            fill="#D8A276"
-        />
-        
-
-    <path
-        d="
-            M 535 427
-            L 527 490
-        "
-        stroke="#4B5563"
-        stroke-width="17"
-        stroke-linecap="round"
-    />
-
-    <path
-        d="
-            M 575 427
-            L 583 490
-        "
-        stroke="#4B5563"
-        stroke-width="17"
-        stroke-linecap="round"
-    />
-
-    <ellipse
-        cx="517"
-        cy="495"
-        rx="22"
-        ry="10"
-        fill="#3B2416"
-    />
-
-    <ellipse
-        cx="593"
-        cy="495"
-        rx="22"
-        ry="10"
-        fill="#3B2416"
-    />
-    
-
-        
     <rect
-        x="427.5"
+        x="275.0"
         y="55"
-        width="255"
+        width="250"
         height="78"
         rx="28"
         fill="white"
@@ -350,9 +38,9 @@
     
         <path
             d="
-                M 535 94.0
-                L 555 122.0
-                L 575 94.0
+                M 380 94.0
+                L 400 122.0
+                L 420 94.0
             "
             fill="white"
             stroke="#E4D3C0"
@@ -361,7 +49,7 @@
         
 
     <text
-        x="555"
+        x="400"
         y="104"
         text-anchor="middle"
         font-family="Arial, sans-serif"
@@ -369,34 +57,319 @@
         font-weight="700"
         fill="#3B2416"
     >
-        Ça va bien
+        Salut, ça va ?
     </text>
     
 
-        <text
-            x="555"
-            y="155"
-            text-anchor="middle"
-            font-size="30"
-        >
-            ✨
-        </text>
+        
+    <ellipse
+        cx="245"
+        cy="460"
+        rx="72"
+        ry="14"
+        fill="#E8D5BF"
+    />
+    
 
-        <text
-            x="600"
-            y="185"
-            text-anchor="middle"
-            font-size="24"
-        >
-            ⭐
-        </text>
+    <path
+        d="
+            M 200 232
+            Q 245 168 290 232
+            L 283 265
+            Q 245 245 207 265
+            Z
+        "
+        fill="#5A3825"
+    />
+    
 
-        <text
-            x="510"
-            y="185"
-            text-anchor="middle"
-            font-size="24"
-        >
-            ⭐
-        </text>
+    <circle
+        cx="245"
+        cy="235"
+        r="43"
+        fill="#F3C7A5"
+    />
+    
+
+    <path
+        d="
+            M 202 230
+            Q 225 180 287 227
+            Q 260 208 233 215
+            Q 215 221 202 230
+            Z
+        "
+        fill="#5A3825"
+    />
+    
+
+        <path
+            d="M 225 237 Q 232 230 239 237"
+            fill="none"
+            stroke="#3B2416"
+            stroke-width="5"
+            stroke-linecap="round"
+        />
+
+        <path
+            d="M 251 237 Q 258 230 265 237"
+            fill="none"
+            stroke="#3B2416"
+            stroke-width="5"
+            stroke-linecap="round"
+        />
+        
+
+        <path
+            d="
+                M 231 255
+                Q 245 270 259 255
+            "
+            fill="none"
+            stroke="#3B2416"
+            stroke-width="5"
+            stroke-linecap="round"
+        />
+        
+
+    <path
+        d="
+            M 200 297
+            Q 245 267 290 297
+            L 299 417
+            L 191 417
+            Z
+        "
+        fill="#62A5F5"
+    />
+    
+
+        <path
+            d="
+                M 203 317
+                Q 170 362 180 402
+            "
+            fill="none"
+            stroke="#F3C7A5"
+            stroke-width="18"
+            stroke-linecap="round"
+        />
+        <circle
+            cx="180"
+            cy="405"
+            r="10"
+            fill="#F3C7A5"
+        />
+        
+
+        <path
+            d="
+                M 287 317
+                Q 325 287 317 242
+            "
+            fill="none"
+            stroke="#F3C7A5"
+            stroke-width="18"
+            stroke-linecap="round"
+        />
+        <circle
+            cx="317"
+            cy="239"
+            r="11"
+            fill="#F3C7A5"
+        />
+        
+
+    <path
+        d="
+            M 225 412
+            L 217 475
+        "
+        stroke="#4B5563"
+        stroke-width="17"
+        stroke-linecap="round"
+    />
+
+    <path
+        d="
+            M 265 412
+            L 273 475
+        "
+        stroke="#4B5563"
+        stroke-width="17"
+        stroke-linecap="round"
+    />
+
+    <ellipse
+        cx="207"
+        cy="480"
+        rx="22"
+        ry="10"
+        fill="#3B2416"
+    />
+
+    <ellipse
+        cx="283"
+        cy="480"
+        rx="22"
+        ry="10"
+        fill="#3B2416"
+    />
+    
+
+        
+    <ellipse
+        cx="555"
+        cy="460"
+        rx="72"
+        ry="14"
+        fill="#E8D5BF"
+    />
+    
+
+    <path
+        d="
+            M 510 232
+            Q 555 168 600 232
+            L 593 265
+            Q 555 245 517 265
+            Z
+        "
+        fill="#3D2A20"
+    />
+    
+
+    <circle
+        cx="555"
+        cy="235"
+        r="43"
+        fill="#D8A276"
+    />
+    
+
+    <path
+        d="
+            M 512 230
+            Q 535 180 597 227
+            Q 570 208 543 215
+            Q 525 221 512 230
+            Z
+        "
+        fill="#3D2A20"
+    />
+    
+
+        <path
+            d="M 535 237 Q 542 230 549 237"
+            fill="none"
+            stroke="#3B2416"
+            stroke-width="5"
+            stroke-linecap="round"
+        />
+
+        <path
+            d="M 561 237 Q 568 230 575 237"
+            fill="none"
+            stroke="#3B2416"
+            stroke-width="5"
+            stroke-linecap="round"
+        />
+        
+
+        <path
+            d="
+                M 541 255
+                Q 555 270 569 255
+            "
+            fill="none"
+            stroke="#3B2416"
+            stroke-width="5"
+            stroke-linecap="round"
+        />
+        
+
+    <path
+        d="
+            M 510 297
+            Q 555 267 600 297
+            L 609 417
+            L 501 417
+            Z
+        "
+        fill="#39C99A"
+    />
+    
+
+        <path
+            d="
+                M 513 317
+                Q 480 362 490 402
+            "
+            fill="none"
+            stroke="#D8A276"
+            stroke-width="18"
+            stroke-linecap="round"
+        />
+        <circle
+            cx="490"
+            cy="405"
+            r="10"
+            fill="#D8A276"
+        />
+        
+
+        <path
+            d="
+                M 597 317
+                Q 635 287 627 242
+            "
+            fill="none"
+            stroke="#D8A276"
+            stroke-width="18"
+            stroke-linecap="round"
+        />
+        <circle
+            cx="627"
+            cy="239"
+            r="11"
+            fill="#D8A276"
+        />
+        
+
+    <path
+        d="
+            M 535 412
+            L 527 475
+        "
+        stroke="#4B5563"
+        stroke-width="17"
+        stroke-linecap="round"
+    />
+
+    <path
+        d="
+            M 575 412
+            L 583 475
+        "
+        stroke="#4B5563"
+        stroke-width="17"
+        stroke-linecap="round"
+    />
+
+    <ellipse
+        cx="517"
+        cy="480"
+        rx="22"
+        ry="10"
+        fill="#3B2416"
+    />
+
+    <ellipse
+        cx="593"
+        cy="480"
+        rx="22"
+        ry="10"
+        fill="#3B2416"
+    />
+    
     </svg>
