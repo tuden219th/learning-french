@@ -387,4 +387,48 @@ export const frenchLessons = {
       { type: "classMission", instruction: "🏆 Hoàn thành nhiệm vụ cuối trong lớp học." },
     ],
   },
+  "moments-de-la-journee": {
+    title: "Les moments de la journée et l'heure",
+    subtitle: "Các thời điểm trong ngày và hỏi giờ",
+    emoji: "🕒",
+    // explicit order for reference (JourneyMap uses index but include for clarity)
+    order: 8,
+    steps: [
+      // SECTION 1 — Les moments de la journée
+      { type: "intro", title: "Le matin", text: "Le matin", translation: "Buổi sáng", audioFile: "le-matin.mp3" },
+      { type: "intro", title: "L'après-midi", text: "L'après-midi", translation: "Buổi chiều", audioFile: "laprès-midi.mp3" },
+      { type: "intro", title: "Le soir", text: "Le soir", translation: "Buổi tối", audioFile: "le-soir.mp3" },
+      { type: "intro", title: "La nuit", text: "La nuit", translation: "Ban đêm", audioFile: "la-nuit.mp3" },
+
+      // SECTION 2 — Les moments importants
+      { type: "intro", title: "Midi", text: "Midi", translation: "Buổi trưa / 12 giờ", audioFile: "midi.mp3" },
+      { type: "intro", title: "Minuit", text: "Minuit", translation: "Nửa đêm", audioFile: "minuit.mp3" },
+      { type: "intro", title: "Maintenant", text: "Maintenant", translation: "Bây giờ", audioFile: "maintenant.mp3" },
+            { type: "intro", title: "Aujourd'hui", text: "Aujourd'hui", translation: "Hôm nay", audioFile: "aujourdhui.mp3" },
+
+      // SECTION 3 — Demander l'heure
+      { type: "listen", title: "Quelle heure ?", instruction: "🔊 Nghe và trả lời: Quelle heure est-il ?", audioFile: "quelle-heure-est-il.mp3" },
+      { type: "choice", audioFile: "il-est-six-heures.mp3", options: [ { text: "Il est six heures.", correct: true }, { text: "Il est huit heures.", correct: false }, { text: "Il est neuf heures.", correct: false } ] },
+      { type: "choice", audioFile: "il-est-huit-heures.mp3", options: [ { text: "Il est huit heures.", correct: true }, { text: "Il est dix heures.", correct: false }, { text: "Il est midi.", correct: false } ] },
+      { type: "choice", audioFile: "il-est-neuf-heures.mp3", options: [ { text: "Il est neuf heures.", correct: true }, { text: "Il est six heures.", correct: false }, { text: "Il est minuit.", correct: false } ] },
+      { type: "choice", audioFile: "il-est-dix-heures.mp3", options: [ { text: "Il est dix heures.", correct: true }, { text: "Il est neuf heures.", correct: false }, { text: "Il est midi.", correct: false } ] },
+      { type: "choice", audioFile: "il-est-midi.mp3", options: [ { text: "Il est midi.", correct: true }, { text: "Il est minuit.", correct: false }, { text: "Il est six heures.", correct: false } ] },
+
+      // SECTION 4 — Une journée de Léo (mini story)
+      { type: "intro", title: "Le matin — Léo se lève", text: "Le matin, Léo se lève.", translation: "Sáng, Léo thức dậy.", audioFile: "le-matin-léo-se-lève.mp3" },
+      { type: "intro", title: "Petit-déjeuner", text: "Il mange le petit-déjeuner.", translation: "Anh ấy ăn sáng.", audioFile: "il-mange-le-petit-déjeuner.mp3" },
+      { type: "intro", title: "À l'école", text: "Il va à l'école.", translation: "Anh ấy đi học.", audioFile: "il-va-à-lécole.mp3" },
+      { type: "intro", title: "L'après-midi — jouer", text: "L'après-midi, il joue.", translation: "Buổi chiều, anh ấy chơi.", audioFile: "laprès-midi-il-joue.mp3" },
+      { type: "intro", title: "Le soir — rentrer", text: "Le soir, il rentre à la maison.", translation: "Buổi tối, anh ấy về nhà.", audioFile: "le-soir-il-rentre-à-la-maison.mp3" },
+      { type: "intro", title: "Dîner", text: "Il mange le dîner.", translation: "Anh ấy ăn tối.", audioFile: "il-mange-le-dîner.mp3" },
+      { type: "intro", title: "La nuit — dormir", text: "La nuit, il dort.", translation: "Đêm, anh ấy ngủ.", audioFile: "la-nuit-il-dort.mp3" },
+
+      // SECTION 5 — Practice / Quiz
+      { type: "matching", pairs: [ { left: "le matin", right: "Buổi sáng" }, { left: "l'après-midi", right: "Buổi chiều" }, { left: "le soir", right: "Buổi tối" }, { left: "la nuit", right: "Ban đêm" } ], instruction: "🔗 Nối tiếng Pháp với nghĩa tiếng Việt." },
+      { type: "choice", instruction: "🔎 Chọn thời điểm phù hợp: 'Je mange le petit-déjeuner le ...' ", options: [ { text: "matin", correct: true }, { text: "soir", correct: false }, { text: "minuit", correct: false } ] },
+      { type: "listen", audioFile: "quelle-heure-est-il.mp3", instruction: "🔊 Nghe: Quelle heure est-il ? Chọn câu đúng." },
+      { type: "choice", audioFile: "il-est-six-heures.mp3", options: [ { text: "Il est six heures.", correct: true }, { text: "Il est midi.", correct: false }, { text: "Il est minuit.", correct: false } ] },
+      { type: "memory", colors: ["le matin", "l'après-midi", "le soir", "la nuit"], instruction: "🧠 Sắp xếp các thời điểm theo đúng thứ tự: matin → après-midi → soir → nuit." }
+    ],
+  },
 } as const;
