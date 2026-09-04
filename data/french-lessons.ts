@@ -431,4 +431,57 @@ export const frenchLessons = {
       { type: "memory", colors: ["le matin", "l'après-midi", "le soir", "la nuit"], instruction: "🧠 Sắp xếp các thời điểm theo đúng thứ tự: matin → après-midi → soir → nuit." }
     ],
   },
+  "jours-de-la-semaine": {
+    title: "Les jours de la semaine",
+    subtitle: "Các ngày trong tuần",
+    emoji: "📅",
+    order: 9,
+    steps: [
+      // SECTION 1 — Introduction
+      { type: "intro", title: "Les jours de la semaine", text: "Les jours de la semaine", translation: "Các ngày trong tuần", audioFile: "la-semaine.mp3" },
+
+      // SECTION 2 — Vocabulary (each as intro so UI shows clearly)
+      { type: "intro", title: "Lundi", text: "lundi", translation: "Thứ Hai", audioFile: "lundi.mp3" },
+      { type: "intro", title: "Mardi", text: "mardi", translation: "Thứ Ba", audioFile: "mardi.mp3" },
+      { type: "intro", title: "Mercredi", text: "mercredi", translation: "Thứ Tư", audioFile: "mercredi.mp3" },
+      { type: "intro", title: "Jeudi", text: "jeudi", translation: "Thứ Năm", audioFile: "jeudi.mp3" },
+      { type: "intro", title: "Vendredi", text: "vendredi", translation: "Thứ Sáu", audioFile: "vendredi.mp3" },
+      { type: "intro", title: "Samedi", text: "samedi", translation: "Thứ Bảy", audioFile: "samedi.mp3" },
+      { type: "intro", title: "Dimanche", text: "dimanche", translation: "Chủ nhật", audioFile: "dimanche.mp3" },
+      { type: "intro", title: "Aujourd'hui", text: "aujourd'hui", translation: "Hôm nay", audioFile: "aujourdhui.mp3" },
+      { type: "intro", title: "Demain", text: "demain", translation: "Ngày mai", audioFile: "demain.mp3" },
+      { type: "intro", title: "Hier", text: "hier", translation: "Hôm qua", audioFile: "hier.mp3" },
+      { type: "intro", title: "Le week-end", text: "le week-end", translation: "Cuối tuần", audioFile: "le-week-end.mp3" },
+
+      // SECTION 3 — Example sentences / Practice
+      { type: "listen", title: "Quel jour sommes-nous ?", instruction: "🔊 Nghe và trả lời", audioFile: "quel-jour-sommes-nous.mp3" },
+      { type: "listen", title: "Quel jour est-ce ?", instruction: "🔊 Nghe và lắng nghe", audioFile: "quel-jour-est-ce.mp3" },
+      { type: "intro", text: "Nous sommes lundi.", translation: "Hôm nay là thứ Hai.", audioFile: "nous-sommes-lundi.mp3" },
+      { type: "intro", text: "Aujourd'hui, c'est mardi.", translation: "Hôm nay là thứ Ba.", audioFile: "aujourdhui-cest-mardi.mp3" },
+      { type: "intro", text: "Demain, c'est mercredi.", translation: "Ngày mai là thứ Tư.", audioFile: "demain-cest-mercredi.mp3" },
+      { type: "intro", text: "Hier, c'était dimanche.", translation: "Hôm qua là Chủ nhật.", audioFile: "hier-cétait-dimanche.mp3" },
+      { type: "intro", text: "Je vais à l'école lundi.", translation: "Tôi đi học vào thứ Hai.", audioFile: "je-vais-à-lécole-lundi.mp3" },
+      { type: "intro", text: "Nous sommes vendredi.", translation: "Hôm nay là thứ Sáu.", audioFile: "nous-sommes-vendredi.mp3" },
+      { type: "intro", text: "Demain, c'est samedi.", translation: "Ngày mai là thứ Bảy.", audioFile: "demain-cest-samedi.mp3" },
+      { type: "intro", text: "Hier, c'était jeudi.", translation: "Hôm qua là thứ Năm.", audioFile: "hier-cétait-jeudi.mp3" },
+      { type: "intro", text: "Le week-end, je me repose.", translation: "Cuối tuần, tôi nghỉ ngơi.", audioFile: "le-week-end-je-me-repose.mp3" },
+
+      // SECTION 4 — Mini dialogue
+      {
+        type: "dialogue",
+        text: `A: Quel jour sommes-nous ?\nB: Nous sommes mercredi.\nA: Et demain ?\nB: Demain, c'est jeudi.`,
+      },
+      // also provide audio snippets for dialogue lines so learners can listen individually
+      { type: "intro", text: "Et demain ?", translation: "Còn ngày mai?", audioFile: "et-demain.mp3" },
+      { type: "intro", text: "Nous sommes mercredi.", translation: "Hôm nay là thứ Tư.", audioFile: "nous-sommes-mercredi.mp3" },
+      { type: "intro", text: "Demain, c'est jeudi.", translation: "Ngày mai là thứ Năm.", audioFile: "demain-cest-jeudi.mp3" },
+
+      // SECTION 5 — Quiz / Review
+      { type: "matching", pairs: [ { left: "lundi", right: "Thứ Hai" }, { left: "mardi", right: "Thứ Ba" }, { left: "mercredi", right: "Thứ Tư" }, { left: "jeudi", right: "Thứ Năm" }, { left: "vendredi", right: "Thứ Sáu" }, { left: "samedi", right: "Thứ Bảy" }, { left: "dimanche", right: "Chủ nhật" } ], instruction: "🔗 Nối ngày tiếng Pháp với nghĩa tiếng Việt." },
+      { type: "choice", instruction: "🔎 Chọn đúng: 'Aujourd'hui, c'est ...'", options: [ { text: "mardi", correct: true }, { text: "lundi", correct: false }, { text: "dimanche", correct: false } ] },
+      { type: "listen", instruction: "🔊 Nghe rồi chọn ngày đúng.", audioFile: "nous-sommes-lundi.mp3" },
+      { type: "choice", audioFile: "nous-sommes-vendredi.mp3", options: [ { text: "Nous sommes vendredi.", correct: true }, { text: "Nous sommes lundi.", correct: false }, { text: "Nous sommes mercredi.", correct: false } ] },
+      { type: "memory", colors: ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"], instruction: "🧠 Sắp xếp các ngày theo đúng thứ tự: lundi → mardi → mercredi → jeudi → vendredi → samedi → dimanche." }
+    ],
+  },
 } as const;
