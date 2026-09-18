@@ -432,56 +432,85 @@ export const frenchLessons = {
     ],
   },
   "jours-de-la-semaine": {
-    title: "Les jours de la semaine",
-    subtitle: "Các ngày trong tuần",
+    title: "Les jours de la semaine et le week-end",
+    subtitle: "7 ngày trong tuần & Cuối tuần (Đủ 4 kỹ năng Nghe - Nói - Đọc - Viết)",
     emoji: "📅",
     order: 9,
+    completionTitle: "Bravo ! Con là Quán quân về Tuần lễ !",
+    completionText: "Con đã thành thạo cả 4 kỹ năng Nghe, Nói, Đọc, Viết về 7 ngày trong tuần và ngày cuối tuần.",
+    completionBadge: "Champion de la Semaine 📅",
+    completionStars: ["⭐", "⭐", "⭐", "⭐", "⭐"],
+    completionDays: ["🌙 Lundi", "🔴 Mardi", "⚡ Mercredi", "🌩️ Jeudi", "💖 Vendredi", "🪐 Samedi", "☀️ Dimanche"],
     steps: [
-      // SECTION 1 — Introduction
-      { type: "intro", title: "Les jours de la semaine", text: "Les jours de la semaine", translation: "Các ngày trong tuần", audioFile: "la-semaine.mp3" },
-
-      // SECTION 2 — Vocabulary (each as intro so UI shows clearly)
-      { type: "intro", title: "Lundi", text: "lundi", translation: "Thứ Hai", audioFile: "lundi.mp3" },
-      { type: "intro", title: "Mardi", text: "mardi", translation: "Thứ Ba", audioFile: "mardi.mp3" },
-      { type: "intro", title: "Mercredi", text: "mercredi", translation: "Thứ Tư", audioFile: "mercredi.mp3" },
-      { type: "intro", title: "Jeudi", text: "jeudi", translation: "Thứ Năm", audioFile: "jeudi.mp3" },
-      { type: "intro", title: "Vendredi", text: "vendredi", translation: "Thứ Sáu", audioFile: "vendredi.mp3" },
-      { type: "intro", title: "Samedi", text: "samedi", translation: "Thứ Bảy", audioFile: "samedi.mp3" },
-      { type: "intro", title: "Dimanche", text: "dimanche", translation: "Chủ nhật", audioFile: "dimanche.mp3" },
-      { type: "intro", title: "Aujourd'hui", text: "aujourd'hui", translation: "Hôm nay", audioFile: "aujourdhui.mp3" },
-      { type: "intro", title: "Demain", text: "demain", translation: "Ngày mai", audioFile: "demain.mp3" },
-      { type: "intro", title: "Hier", text: "hier", translation: "Hôm qua", audioFile: "hier.mp3" },
-      { type: "intro", title: "Le week-end", text: "le week-end", translation: "Cuối tuần", audioFile: "le-week-end.mp3" },
-
-      // SECTION 3 — Example sentences / Practice
-      { type: "listen", title: "Quel jour sommes-nous ?", instruction: "🔊 Nghe và trả lời", audioFile: "quel-jour-sommes-nous.mp3" },
-      { type: "listen", title: "Quel jour est-ce ?", instruction: "🔊 Nghe và lắng nghe", audioFile: "quel-jour-est-ce.mp3" },
-      { type: "intro", text: "Nous sommes lundi.", translation: "Hôm nay là thứ Hai.", audioFile: "nous-sommes-lundi.mp3" },
-      { type: "intro", text: "Aujourd'hui, c'est mardi.", translation: "Hôm nay là thứ Ba.", audioFile: "aujourdhui-cest-mardi.mp3" },
-      { type: "intro", text: "Demain, c'est mercredi.", translation: "Ngày mai là thứ Tư.", audioFile: "demain-cest-mercredi.mp3" },
-      { type: "intro", text: "Hier, c'était dimanche.", translation: "Hôm qua là Chủ nhật.", audioFile: "hier-cétait-dimanche.mp3" },
-      { type: "intro", text: "Je vais à l'école lundi.", translation: "Tôi đi học vào thứ Hai.", audioFile: "je-vais-à-lécole-lundi.mp3" },
-      { type: "intro", text: "Nous sommes vendredi.", translation: "Hôm nay là thứ Sáu.", audioFile: "nous-sommes-vendredi.mp3" },
-      { type: "intro", text: "Demain, c'est samedi.", translation: "Ngày mai là thứ Bảy.", audioFile: "demain-cest-samedi.mp3" },
-      { type: "intro", text: "Hier, c'était jeudi.", translation: "Hôm qua là thứ Năm.", audioFile: "hier-cétait-jeudi.mp3" },
-      { type: "intro", text: "Le week-end, je me repose.", translation: "Cuối tuần, tôi nghỉ ngơi.", audioFile: "le-week-end-je-me-repose.mp3" },
-
-      // SECTION 4 — Mini dialogue
       {
-        type: "dialogue",
-        text: `A: Quel jour sommes-nous ?\nB: Nous sommes mercredi.\nA: Et demain ?\nB: Demain, c'est jeudi.`,
+        type: "weekIntro",
+        instruction: "📅 Chào mừng con đến bài học các ngày trong tuần và ngày cuối tuần!",
       },
-      // also provide audio snippets for dialogue lines so learners can listen individually
-      { type: "intro", text: "Et demain ?", translation: "Còn ngày mai?", audioFile: "et-demain.mp3" },
-      { type: "intro", text: "Nous sommes mercredi.", translation: "Hôm nay là thứ Tư.", audioFile: "nous-sommes-mercredi.mp3" },
-      { type: "intro", text: "Demain, c'est jeudi.", translation: "Ngày mai là thứ Năm.", audioFile: "demain-cest-jeudi.mp3" },
-
-      // SECTION 5 — Quiz / Review
-      { type: "matching", pairs: [ { left: "lundi", right: "Thứ Hai" }, { left: "mardi", right: "Thứ Ba" }, { left: "mercredi", right: "Thứ Tư" }, { left: "jeudi", right: "Thứ Năm" }, { left: "vendredi", right: "Thứ Sáu" }, { left: "samedi", right: "Thứ Bảy" }, { left: "dimanche", right: "Chủ nhật" } ], instruction: "🔗 Nối ngày tiếng Pháp với nghĩa tiếng Việt." },
-      { type: "choice", instruction: "🔎 Chọn đúng: 'Aujourd'hui, c'est ...'", options: [ { text: "mardi", correct: true }, { text: "lundi", correct: false }, { text: "dimanche", correct: false } ] },
-      { type: "listen", instruction: "🔊 Nghe rồi chọn ngày đúng.", audioFile: "nous-sommes-lundi.mp3" },
-      { type: "choice", audioFile: "nous-sommes-vendredi.mp3", options: [ { text: "Nous sommes vendredi.", correct: true }, { text: "Nous sommes lundi.", correct: false }, { text: "Nous sommes mercredi.", correct: false } ] },
-      { type: "memory", colors: ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"], instruction: "🧠 Sắp xếp các ngày theo đúng thứ tự: lundi → mardi → mercredi → jeudi → vendredi → samedi → dimanche." }
+      {
+        type: "weekDiscovery",
+        instruction: "👀 Chạm vào từng ngày để nghe phát âm chuẩn tiếng Pháp và ví dụ.",
+      },
+      {
+        type: "weekListening",
+        instruction: "🎧 Thử thách đôi tai: Nghe nhận diện ngày và ngày cuối tuần.",
+      },
+      {
+        type: "weekSpeaking",
+        instruction: "🎤 Luyện nói tiếng Pháp: Nghe cô giáo đọc mẫu và đọc to rõ ràng.",
+      },
+      {
+        type: "weekReading",
+        instruction: "📖 Đọc hiểu: Đọc nhật ký tuần lễ của bạn Léo và trả lời câu hỏi.",
+      },
+      {
+        type: "weekWriting",
+        instruction: "✍️ Luyện viết: Ghép các chữ cái thành tên thứ chuẩn chính tả.",
+      },
+      {
+        type: "weekOrder",
+        instruction: "🏆 Siêu thử thách: Sắp xếp 7 ngày từ Thứ Hai đến Chủ Nhật.",
+      },
+    ],
+  },
+  "journee-d-ecole": {
+    title: "Une journée d'école",
+    subtitle: "Đi học hàng ngày cùng các bạn nhỏ (Lớp 2 - CE1)",
+    emoji: "🎒",
+    order: 12,
+    completionTitle: "Bravo ! Con đã hoàn thành xuất sắc một ngày đi học !",
+    completionText: "Con đã biết cách kể về một ngày đến trường, từ soạn cặp sách, học bài đến giờ ra chơi bằng tiếng Pháp chuẩn.",
+    completionBadge: "Élève Modèle 🎒",
+    completionStars: ["⭐", "⭐", "⭐", "⭐", "⭐"],
+    completionSchool: ["🎒 Cartable", "🏫 École", "📚 Cahier", "⚽ Récré", "🍽️ Cantine", "🏡 Maison"],
+    steps: [
+      {
+        type: "schoolIntro",
+        instruction: "🎒 Chào mừng con đến hành trình một ngày đến trường vui vẻ!",
+      },
+      {
+        type: "schoolTimeline",
+        instruction: "⏰ Khám phá từng chặng thời gian từ sáng đến chiều tan trường.",
+      },
+      {
+        type: "schoolListening",
+        instruction: "🎧 Nghe các âm thanh và lời dặn quen thuộc ở trường học.",
+      },
+      {
+        type: "schoolSpeaking",
+        instruction: "🎤 Luyện nói tự tin: Chào cô giáo, chào bạn bè và reo mừng giờ ra chơi.",
+      },
+      {
+        type: "schoolReading",
+        instruction: "📖 Đọc hiểu: Cùng đọc câu chuyện một ngày của bạn Manon.",
+      },
+      {
+        type: "schoolWriting",
+        instruction: "✍️ Luyện viết: Ghép các từ thành câu đúng chuẩn ngữ pháp.",
+      },
+      {
+        type: "schoolBagGame",
+        instruction: "🎒 Trò chơi thực tế: Chọn đúng đồ dùng cần thiết vào cặp sách.",
+      },
     ],
   },
   "jeu-des-lettres": {

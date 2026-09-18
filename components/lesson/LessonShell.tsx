@@ -73,9 +73,25 @@ import {
   ClockQuizChoiceActivity,
   speakFrench,
 } from "./ClockActivities";
+import {
+  WeekDiscoveryActivity,
+  WeekListeningActivity,
+  WeekSpeakingActivity,
+  WeekReadingActivity,
+  WeekWritingActivity,
+  WeekOrderActivity,
+} from "./WeekActivities";
+import {
+  SchoolTimelineActivity,
+  SchoolListeningActivity,
+  SchoolSpeakingActivity,
+  SchoolReadingActivity,
+  SchoolWritingActivity,
+  SchoolBagGameActivity,
+} from "./SchoolDayActivities";
 
 type LessonStep = {
-  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission" | "numberIntro" | "numberDiscovery" | "numberListenFind" | "numberCount" | "numberAnimalColor" | "numberAnimal" | "numberSpeaking" | "numberSequence" | "numberChallenge" | "familyIntro" | "familySalon" | "familyFind" | "familyChambre" | "familyNumber" | "familyColor" | "familyAnimal" | "familySpeaking" | "familySecret" | "familyChallenge" | "foodIntro" | "foodTeach" | "foodBasket" | "foodListen" | "foodCount" | "foodColor" | "foodWorld" | "foodSpeaking" | "foodChallenge" | "classDiscovery" | "classChoice" | "classMatching" | "classMemory" | "classObjectColor" | "classCount" | "classSpeaking" | "classMission" | "scrambleIntro" | "scrambleAnimal" | "scrambleFood" | "scrambleAudio" | "scrambleSuper" | "clockIntro" | "clockDiscovery" | "clockSentenceScramble" | "clockHandsChallenge" | "clockSpeaking" | "clockReading" | "clockWriting" | "clockChoice";
+  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission" | "numberIntro" | "numberDiscovery" | "numberListenFind" | "numberCount" | "numberAnimalColor" | "numberAnimal" | "numberSpeaking" | "numberSequence" | "numberChallenge" | "familyIntro" | "familySalon" | "familyFind" | "familyChambre" | "familyNumber" | "familyColor" | "familyAnimal" | "familySpeaking" | "familySecret" | "familyChallenge" | "foodIntro" | "foodTeach" | "foodBasket" | "foodListen" | "foodCount" | "foodColor" | "foodWorld" | "foodSpeaking" | "foodChallenge" | "classDiscovery" | "classChoice" | "classMatching" | "classMemory" | "classObjectColor" | "classCount" | "classSpeaking" | "classMission" | "scrambleIntro" | "scrambleAnimal" | "scrambleFood" | "scrambleAudio" | "scrambleSuper" | "clockIntro" | "clockDiscovery" | "clockSentenceScramble" | "clockHandsChallenge" | "clockSpeaking" | "clockReading" | "clockWriting" | "clockChoice" | "weekIntro" | "weekDiscovery" | "weekListening" | "weekSpeaking" | "weekReading" | "weekWriting" | "weekOrder" | "schoolIntro" | "schoolTimeline" | "schoolListening" | "schoolSpeaking" | "schoolReading" | "schoolWriting" | "schoolBagGame";
   title?: string;
   text?: string;
   translation?: string;
@@ -119,6 +135,8 @@ type Lesson = {
   completionStars?: readonly string[];
   completionFoods?: readonly string[];
   completionClocks?: readonly string[];
+  completionDays?: readonly string[];
+  completionSchool?: readonly string[];
 };
 
 export default function LessonShell({ lesson }: { lesson: Lesson }) {
@@ -362,6 +380,44 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
                     style={{ animationDelay: `${index * 80}ms` }}
                   >
                     {clock}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-5 text-gray-600 font-medium">{lesson.completionText}</p>
+              <div className="mt-4 text-2xl">{lesson.completionStars?.join(" ")}</div>
+              <p className="mt-4 font-black text-[#C96A2B]">🏅 {lesson.completionBadge}</p>
+            </>
+          )}
+
+          {lesson.completionDays && (
+            <>
+              <div className="mt-7 flex flex-wrap justify-center gap-2 text-3xl">
+                {lesson.completionDays.map((day, index) => (
+                  <span
+                    key={`${day}-${index}`}
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#FFF8EA] shadow-sm animate-bounce"
+                    style={{ animationDelay: `${index * 80}ms` }}
+                  >
+                    {day}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-5 text-gray-600 font-medium">{lesson.completionText}</p>
+              <div className="mt-4 text-2xl">{lesson.completionStars?.join(" ")}</div>
+              <p className="mt-4 font-black text-[#C96A2B]">🏅 {lesson.completionBadge}</p>
+            </>
+          )}
+
+          {lesson.completionSchool && (
+            <>
+              <div className="mt-7 flex flex-wrap justify-center gap-2 text-3xl">
+                {lesson.completionSchool.map((item, index) => (
+                  <span
+                    key={`${item}-${index}`}
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EEF4FA] shadow-sm animate-bounce"
+                    style={{ animationDelay: `${index * 80}ms` }}
+                  >
+                    {item}
                   </span>
                 ))}
               </div>
@@ -906,6 +962,137 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
             />
           )}
 
+          {step.type === "weekIntro" && (
+            <div className="text-center py-6">
+              <div className="text-7xl mb-4 animate-bounce">📅</div>
+              <h3 className="text-3xl font-black text-[#315A8D]">
+                Les jours de la semaine & Le week-end
+              </h3>
+              <p className="text-lg font-bold text-[#806C58] mt-2">
+                Các thứ trong tuần và Ngày cuối tuần (CE1)
+              </p>
+              <div className="mt-6 inline-block bg-[#FFF8EA] border-2 border-[#E9DDC8] p-5 rounded-3xl max-w-md text-left">
+                <p className="font-extrabold text-[#C96A2B] text-base mb-2">
+                  🌟 Đầy đủ 4 kỹ năng ngôn ngữ cho bé:
+                </p>
+                <ul className="text-sm font-semibold text-[#4A3828] space-y-2">
+                  <li>🎧 <strong>Nghe:</strong> Nhận biết phát âm 7 ngày và khái niệm cuối tuần.</li>
+                  <li>🎤 <strong>Nói:</strong> Luyện phát âm to rõ từng thứ trong tuần cùng cô giáo.</li>
+                  <li>📖 <strong>Đọc:</strong> Đọc hiểu nhật ký tuần lễ đáng yêu của bạn nhỏ.</li>
+                  <li>✍️ <strong>Viết:</strong> Ghép chữ cái và sắp xếp 7 ngày đúng thứ tự.</li>
+                </ul>
+              </div>
+            </div>
+          )}
+
+          {step.type === "weekDiscovery" && (
+            <WeekDiscoveryActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "weekListening" && (
+            <WeekListeningActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "weekSpeaking" && (
+            <WeekSpeakingActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "weekReading" && (
+            <WeekReadingActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "weekWriting" && (
+            <WeekWritingActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "weekOrder" && (
+            <WeekOrderActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "schoolIntro" && (
+            <div className="text-center py-6">
+              <div className="text-7xl mb-4 animate-bounce">🎒</div>
+              <h3 className="text-3xl font-black text-[#315A8D]">
+                Une journée d'école
+              </h3>
+              <p className="text-lg font-bold text-[#806C58] mt-2">
+                Đi học hàng ngày cùng các bạn nhỏ (Lớp 2 - CE1)
+              </p>
+              <div className="mt-6 inline-block bg-[#FFF8EA] border-2 border-[#E9DDC8] p-5 rounded-3xl max-w-md text-left">
+                <p className="font-extrabold text-[#C96A2B] text-base mb-2">
+                  🌟 Khám phá các hoạt động thường ngày:
+                </p>
+                <ul className="text-sm font-semibold text-[#4A3828] space-y-2">
+                  <li>🎒 <strong>Matin:</strong> Soạn cặp sách với sách vở, hộp bút và thước kẻ.</li>
+                  <li>🏫 <strong>À l'école:</strong> Lễ phép chào cô giáo và các bạn.</li>
+                  <li>📚 <strong>En classe:</strong> Đọc truyện, viết bài và đếm số.</li>
+                  <li>⚽ <strong>La récré:</strong> Chạy nhảy chơi đùa ở sân trường.</li>
+                  <li>🍽️ <strong>La cantine:</strong> Bữa trưa vui vẻ ngon miệng.</li>
+                </ul>
+              </div>
+            </div>
+          )}
+
+          {step.type === "schoolTimeline" && (
+            <SchoolTimelineActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "schoolListening" && (
+            <SchoolListeningActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "schoolSpeaking" && (
+            <SchoolSpeakingActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "schoolReading" && (
+            <SchoolReadingActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "schoolWriting" && (
+            <SchoolWritingActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "schoolBagGame" && (
+            <SchoolBagGameActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
         </section>
 
         {/* Bottom button */}
@@ -918,7 +1105,9 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
               step.type.startsWith("food") ||
               step.type.startsWith("class") ||
               step.type.startsWith("scramble") ||
-              (step.type.startsWith("clock") && step.type !== "clockIntro")) &&
+              (step.type.startsWith("clock") && step.type !== "clockIntro") ||
+              (step.type.startsWith("week") && step.type !== "weekIntro") ||
+              (step.type.startsWith("school") && step.type !== "schoolIntro")) &&
               !stepComplete)
           }
           className="mt-5 w-full rounded-2xl bg-[#C96A2B] px-6 py-4 text-lg font-bold text-white disabled:cursor-not-allowed disabled:opacity-40"
