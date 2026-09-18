@@ -2,11 +2,17 @@ import Link from "next/link";
 
 const activities = [
   {
+    icon: "⏰",
+    title: "Đồng hồ & Xem giờ",
+    french: "L'heure et l'horloge",
+    href: "/learn/l-heure",
+    badge: "Mới! ⏰",
+  },
+  {
     icon: "🔤",
     title: "Ghép chữ kỳ diệu",
     french: "Le jeu des lettres",
     href: "/learn/jeu-des-lettres",
-    badge: "Mới! ✨",
   },
   {
     icon: "🎨",

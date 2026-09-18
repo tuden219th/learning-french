@@ -517,4 +517,50 @@ export const frenchLessons = {
       },
     ],
   },
+  "l-heure": {
+    title: "L'heure et l'horloge",
+    subtitle: "Xem giờ cùng chú đồng hồ vui vẻ ⏰",
+    emoji: "⏰",
+    order: 11,
+    completionTitle: "Bravo ! Con đã là Bậc thầy Thời gian !",
+    completionText: "Con đã biết hỏi và xem giờ bằng tiếng Pháp, điều khiển đồng hồ kim thành thạo.",
+    completionBadge: "Maître du Temps ⏰",
+    completionStars: ["⭐", "⭐", "⭐", "⭐", "⭐"],
+    completionClocks: ["🕐", "🕑", "🕒", "🕓", "🕔", "🕕", "🕖", "🕗", "🕘", "🕙", "🕚", "🕛"],
+    steps: [
+      {
+        type: "clockIntro",
+        instruction: "⏰ Chào mừng con đến thế giới của bạn Đồng Hồ Thông Thái!",
+      },
+      {
+        type: "clockDiscovery",
+        instruction: "👀 Chạm vào các mốc giờ trên đồng hồ để xoay kim và nghe phát âm.",
+      },
+      {
+        type: "clockSentenceScramble",
+        instruction: "🧩 Trò chơi: Sắp xếp các từ rời rạc thành câu xem giờ chuẩn Pháp.",
+      },
+      {
+        type: "clockHandsChallenge",
+        instruction: "🎯 Thử thách xoay kim: Chỉnh đồng hồ tới đúng giờ được yêu cầu.",
+      },
+      {
+        type: "clockSpeaking",
+        instruction: "🎤 Luyện nói tiếng Pháp: Nghe câu hỏi và trả lời to rõ ràng.",
+      },
+      {
+        type: "clockReading",
+        instruction: "📖 Đọc hiểu: Cùng đọc nhật ký một ngày vui vẻ của bạn Léo.",
+      },
+      {
+        type: "clockWriting",
+        instruction: "✍️ Luyện viết: Ghép các chữ cái thành từ vựng về thời gian.",
+      },
+      {
+        type: "clockChoice",
+        instruction: "❓ Trắc nghiệm: Nhìn kim đồng hồ và chọn câu trả lời đúng.",
+      },
+    ],
+  },
 } as const;
+

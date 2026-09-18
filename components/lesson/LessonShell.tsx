@@ -63,9 +63,19 @@ import {
   AudioMysteryScrambleActivity,
   SuperChallengeScrambleActivity,
 } from "./WordScrambleActivities";
+import {
+  ClockDiscoveryActivity,
+  SentenceBuilderGame,
+  ClockHandsChallenge,
+  ClockSpeakingActivity,
+  ClockStoryReadingActivity,
+  ClockWritingActivity,
+  ClockQuizChoiceActivity,
+  speakFrench,
+} from "./ClockActivities";
 
 type LessonStep = {
-  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission" | "numberIntro" | "numberDiscovery" | "numberListenFind" | "numberCount" | "numberAnimalColor" | "numberAnimal" | "numberSpeaking" | "numberSequence" | "numberChallenge" | "familyIntro" | "familySalon" | "familyFind" | "familyChambre" | "familyNumber" | "familyColor" | "familyAnimal" | "familySpeaking" | "familySecret" | "familyChallenge" | "foodIntro" | "foodTeach" | "foodBasket" | "foodListen" | "foodCount" | "foodColor" | "foodWorld" | "foodSpeaking" | "foodChallenge" | "classDiscovery" | "classChoice" | "classMatching" | "classMemory" | "classObjectColor" | "classCount" | "classSpeaking" | "classMission" | "scrambleIntro" | "scrambleAnimal" | "scrambleFood" | "scrambleAudio" | "scrambleSuper";
+  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission" | "numberIntro" | "numberDiscovery" | "numberListenFind" | "numberCount" | "numberAnimalColor" | "numberAnimal" | "numberSpeaking" | "numberSequence" | "numberChallenge" | "familyIntro" | "familySalon" | "familyFind" | "familyChambre" | "familyNumber" | "familyColor" | "familyAnimal" | "familySpeaking" | "familySecret" | "familyChallenge" | "foodIntro" | "foodTeach" | "foodBasket" | "foodListen" | "foodCount" | "foodColor" | "foodWorld" | "foodSpeaking" | "foodChallenge" | "classDiscovery" | "classChoice" | "classMatching" | "classMemory" | "classObjectColor" | "classCount" | "classSpeaking" | "classMission" | "scrambleIntro" | "scrambleAnimal" | "scrambleFood" | "scrambleAudio" | "scrambleSuper" | "clockIntro" | "clockDiscovery" | "clockSentenceScramble" | "clockHandsChallenge" | "clockSpeaking" | "clockReading" | "clockWriting" | "clockChoice";
   title?: string;
   text?: string;
   translation?: string;
@@ -108,6 +118,7 @@ type Lesson = {
   completionBadge?: string;
   completionStars?: readonly string[];
   completionFoods?: readonly string[];
+  completionClocks?: readonly string[];
 };
 
 export default function LessonShell({ lesson }: { lesson: Lesson }) {
@@ -199,6 +210,22 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
     "stylo": "stylo.mp3",
     "table": "table.mp3",
     "bravo": "bravo.mp3",
+    "quelle heure est il": "quelle-heure-est-il.mp3",
+    "quelle heure": "quelle-heure-est-il.mp3",
+    "il est une heure": "un.mp3",
+    "il est deux heures": "deux.mp3",
+    "il est trois heures": "trois.mp3",
+    "il est quatre heures": "quatre.mp3",
+    "il est cinq heures": "cinq.mp3",
+    "il est six heures": "il-est-six-heures.mp3",
+    "il est sept heures": "sept.mp3",
+    "il est huit heures": "il-est-huit-heures.mp3",
+    "il est neuf heures": "il-est-neuf-heures.mp3",
+    "il est dix heures": "il-est-dix-heures.mp3",
+    "il est midi": "il-est-midi.mp3",
+    "midi": "midi.mp3",
+    "minuit": "minuit.mp3",
+    "maintenant": "maintenant.mp3",
   };
 
   function normalizeFrench(text: string) {
@@ -233,23 +260,29 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
     const resolvedFile = audioFile ?? frenchAudioFiles[normalizeFrench(text ?? "")];
 
     if (!resolvedFile) {
-      console.warn(`[French Audio Missing] /audio/fr/${slugifyFrench(text ?? "audio")}.mp3`);
+      if (text) {
+        speakFrench(text);
+      }
       return;
     }
 
-    playAudioFile(resolvedFile);
+    playAudioFile(resolvedFile, text);
   }
 
-  function playAudioFile(file?: string) {
+  function playAudioFile(file?: string, fallbackText?: string) {
     if (!file || typeof window === "undefined") return;
 
     const url = `/audio/fr/${encodeURIComponent(file)}`;
     const audio = new Audio(url);
     audio.addEventListener("error", () => {
-      console.warn(`[French Audio Missing] ${url}`);
+      if (fallbackText) {
+        speakFrench(fallbackText);
+      }
     }, { once: true });
     audio.play().catch(() => {
-      console.warn(`[French Audio Missing] ${url}`);
+      if (fallbackText) {
+        speakFrench(fallbackText);
+      }
     });
   }
 
@@ -314,6 +347,25 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
                 {lesson.completionFoods.map((food, index) => <span key={`${food}-${index}`}>{food}</span>)}
               </div>
               <p className="mt-5 text-gray-600">{lesson.completionText}</p>
+              <div className="mt-4 text-2xl">{lesson.completionStars?.join(" ")}</div>
+              <p className="mt-4 font-black text-[#C96A2B]">🏅 {lesson.completionBadge}</p>
+            </>
+          )}
+
+          {lesson.completionClocks && (
+            <>
+              <div className="mt-7 flex flex-wrap justify-center gap-2 text-3xl">
+                {lesson.completionClocks.map((clock, index) => (
+                  <span
+                    key={`${clock}-${index}`}
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#FFF8EA] shadow-sm animate-bounce"
+                    style={{ animationDelay: `${index * 80}ms` }}
+                  >
+                    {clock}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-5 text-gray-600 font-medium">{lesson.completionText}</p>
               <div className="mt-4 text-2xl">{lesson.completionStars?.join(" ")}</div>
               <p className="mt-4 font-black text-[#C96A2B]">🏅 {lesson.completionBadge}</p>
             </>
@@ -779,6 +831,81 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
             <SuperChallengeScrambleActivity onSpeak={playAudio} onComplete={() => setStepComplete(true)} />
           )}
 
+          {step.type === "clockIntro" && (
+            <div className="text-center">
+              <div className="text-8xl animate-bounce">⏰</div>
+              <h1 className="mt-5 text-3xl font-black text-[#294A3A]">
+                Chào mừng bé đến với Giờ & Đồng Hồ!
+              </h1>
+              <p className="mt-3 text-lg font-bold text-[#315A8D]">
+                "Quelle heure est-il ?" — Mấy giờ rồi nhỉ?
+              </p>
+              <p className="mt-2 text-sm text-gray-600 max-w-md mx-auto">
+                Bé sẽ cùng bạn Cú Thông Thái học cách hỏi giờ, đọc đồng hồ kim và hoàn thành các trò chơi thú vị nhé!
+              </p>
+
+              <div className="mt-7 flex justify-center gap-3">
+                <button
+                  onClick={() => {
+                    playAudio("Quelle heure est-il ?", "quelle-heure-est-il.mp3");
+                  }}
+                  className="rounded-2xl bg-[#315A8D] px-6 py-3 font-bold text-white shadow-md transition hover:scale-105"
+                >
+                  🔊 Nghe: Quelle heure est-il ?
+                </button>
+              </div>
+            </div>
+          )}
+
+          {step.type === "clockDiscovery" && (
+            <ClockDiscoveryActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "clockSentenceScramble" && (
+            <SentenceBuilderGame
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "clockHandsChallenge" && (
+            <ClockHandsChallenge
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "clockSpeaking" && (
+            <ClockSpeakingActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "clockReading" && (
+            <ClockStoryReadingActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "clockWriting" && (
+            <ClockWritingActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
+          {step.type === "clockChoice" && (
+            <ClockQuizChoiceActivity
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
         </section>
 
         {/* Bottom button */}
@@ -790,7 +917,8 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
               step.type.startsWith("family") ||
               step.type.startsWith("food") ||
               step.type.startsWith("class") ||
-              step.type.startsWith("scramble")) &&
+              step.type.startsWith("scramble") ||
+              (step.type.startsWith("clock") && step.type !== "clockIntro")) &&
               !stepComplete)
           }
           className="mt-5 w-full rounded-2xl bg-[#C96A2B] px-6 py-4 text-lg font-bold text-white disabled:cursor-not-allowed disabled:opacity-40"
