@@ -484,4 +484,37 @@ export const frenchLessons = {
       { type: "memory", colors: ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"], instruction: "🧠 Sắp xếp các ngày theo đúng thứ tự: lundi → mardi → mercredi → jeudi → vendredi → samedi → dimanche." }
     ],
   },
+  "jeu-des-lettres": {
+    title: "Le jeu des lettres",
+    subtitle: "Sắp xếp chữ cái khám phá từ vựng",
+    emoji: "🔤",
+    order: 10,
+    completionTitle: "Bravo ! Con là Thám tử chữ cái xuất sắc !",
+    completionText: "Con đã giải mã và ghép đúng tất cả các từ tiếng Pháp qua hình ảnh và âm thanh.",
+    completionBadge: "Maître des Lettres 🔤",
+    completionStars: ["⭐", "⭐", "⭐", "⭐", "⭐"],
+    completionFoods: ["🐱", "🐶", "🦁", "🥖", "🥛", "🍎", "🔵", "🟢", "📚", "🐰", "🍓", "🍌"],
+    steps: [
+      {
+        type: "scrambleIntro",
+        instruction: "🔤 Chào mừng đến trò chơi ghép chữ kỳ diệu!",
+      },
+      {
+        type: "scrambleAnimal",
+        instruction: "🐱 Nhìn hình và nghe âm thanh để xếp tên các con vật.",
+      },
+      {
+        type: "scrambleFood",
+        instruction: "🥖 Sắp xếp các chữ cái để khám phá các món ăn thơm ngon.",
+      },
+      {
+        type: "scrambleAudio",
+        instruction: "🎧 Thử thách đôi tai: Nghe từ bí ẩn và xếp chữ cái.",
+      },
+      {
+        type: "scrambleSuper",
+        instruction: "🏆 Super Défi: Thử thách giải mã các từ vựng dài hơn.",
+      },
+    ],
+  },
 } as const;

@@ -56,9 +56,16 @@ import {
   ClassroomObjectColor,
   ClassroomSpeaking,
 } from "./ClassroomActivities";
+import {
+  ScrambleIntro,
+  AnimalScrambleActivity,
+  FoodScrambleActivity,
+  AudioMysteryScrambleActivity,
+  SuperChallengeScrambleActivity,
+} from "./WordScrambleActivities";
 
 type LessonStep = {
-  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission" | "numberIntro" | "numberDiscovery" | "numberListenFind" | "numberCount" | "numberAnimalColor" | "numberAnimal" | "numberSpeaking" | "numberSequence" | "numberChallenge" | "familyIntro" | "familySalon" | "familyFind" | "familyChambre" | "familyNumber" | "familyColor" | "familyAnimal" | "familySpeaking" | "familySecret" | "familyChallenge" | "foodIntro" | "foodTeach" | "foodBasket" | "foodListen" | "foodCount" | "foodColor" | "foodWorld" | "foodSpeaking" | "foodChallenge" | "classDiscovery" | "classChoice" | "classMatching" | "classMemory" | "classObjectColor" | "classCount" | "classSpeaking" | "classMission";
+  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission" | "numberIntro" | "numberDiscovery" | "numberListenFind" | "numberCount" | "numberAnimalColor" | "numberAnimal" | "numberSpeaking" | "numberSequence" | "numberChallenge" | "familyIntro" | "familySalon" | "familyFind" | "familyChambre" | "familyNumber" | "familyColor" | "familyAnimal" | "familySpeaking" | "familySecret" | "familyChallenge" | "foodIntro" | "foodTeach" | "foodBasket" | "foodListen" | "foodCount" | "foodColor" | "foodWorld" | "foodSpeaking" | "foodChallenge" | "classDiscovery" | "classChoice" | "classMatching" | "classMemory" | "classObjectColor" | "classCount" | "classSpeaking" | "classMission" | "scrambleIntro" | "scrambleAnimal" | "scrambleFood" | "scrambleAudio" | "scrambleSuper";
   title?: string;
   text?: string;
   translation?: string;
@@ -184,6 +191,14 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
     "la gomme est blanche": "la-gomme-est-blanche.mp3",
     "trois crayons": "trois-crayons.mp3",
     "deux livres": "deux-livres.mp3",
+    "chat": "chat.mp3",
+    "chien": "chien.mp3",
+    "lion": "lion.mp3",
+    "lapin": "lapin.mp3",
+    "livre": "livre.mp3",
+    "stylo": "stylo.mp3",
+    "table": "table.mp3",
+    "bravo": "bravo.mp3",
   };
 
   function normalizeFrench(text: string) {
@@ -744,12 +759,40 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
 
           {step.type === "classMission" && <ClassroomMission onSpeak={playAudio} onComplete={() => setStepComplete(true)} />}
 
+          {step.type === "scrambleIntro" && (
+            <ScrambleIntro onSpeak={playAudio} onComplete={() => setStepComplete(true)} />
+          )}
+
+          {step.type === "scrambleAnimal" && (
+            <AnimalScrambleActivity onSpeak={playAudio} onComplete={() => setStepComplete(true)} />
+          )}
+
+          {step.type === "scrambleFood" && (
+            <FoodScrambleActivity onSpeak={playAudio} onComplete={() => setStepComplete(true)} />
+          )}
+
+          {step.type === "scrambleAudio" && (
+            <AudioMysteryScrambleActivity onSpeak={playAudio} onComplete={() => setStepComplete(true)} />
+          )}
+
+          {step.type === "scrambleSuper" && (
+            <SuperChallengeScrambleActivity onSpeak={playAudio} onComplete={() => setStepComplete(true)} />
+          )}
+
         </section>
 
         {/* Bottom button */}
         <button
           onClick={next}
-          disabled={(step.type === "choice" && selected === null) || ((step.type.startsWith("number") || step.type.startsWith("family") || step.type.startsWith("food") || step.type.startsWith("class")) && !stepComplete)}
+          disabled={
+            (step.type === "choice" && selected === null) ||
+            ((step.type.startsWith("number") ||
+              step.type.startsWith("family") ||
+              step.type.startsWith("food") ||
+              step.type.startsWith("class") ||
+              step.type.startsWith("scramble")) &&
+              !stepComplete)
+          }
           className="mt-5 w-full rounded-2xl bg-[#C96A2B] px-6 py-4 text-lg font-bold text-white disabled:cursor-not-allowed disabled:opacity-40"
         >
           {stepIndex === lesson.steps.length - 1
