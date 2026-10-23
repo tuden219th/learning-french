@@ -89,9 +89,10 @@ import {
   SchoolWritingActivity,
   SchoolBagGameActivity,
 } from "./SchoolDayActivities";
+import { WeatherKidsActivity } from "./WeatherActivities";
 
 type LessonStep = {
-  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission" | "numberIntro" | "numberDiscovery" | "numberListenFind" | "numberCount" | "numberAnimalColor" | "numberAnimal" | "numberSpeaking" | "numberSequence" | "numberChallenge" | "familyIntro" | "familySalon" | "familyFind" | "familyChambre" | "familyNumber" | "familyColor" | "familyAnimal" | "familySpeaking" | "familySecret" | "familyChallenge" | "foodIntro" | "foodTeach" | "foodBasket" | "foodListen" | "foodCount" | "foodColor" | "foodWorld" | "foodSpeaking" | "foodChallenge" | "classDiscovery" | "classChoice" | "classMatching" | "classMemory" | "classObjectColor" | "classCount" | "classSpeaking" | "classMission" | "scrambleIntro" | "scrambleAnimal" | "scrambleFood" | "scrambleAudio" | "scrambleSuper" | "clockIntro" | "clockDiscovery" | "clockSentenceScramble" | "clockHandsChallenge" | "clockSpeaking" | "clockReading" | "clockWriting" | "clockChoice" | "weekIntro" | "weekDiscovery" | "weekListening" | "weekSpeaking" | "weekReading" | "weekWriting" | "weekOrder" | "schoolIntro" | "schoolTimeline" | "schoolListening" | "schoolSpeaking" | "schoolReading" | "schoolWriting" | "schoolBagGame";
+  type: "intro" | "choice" | "listen" | "dialogue" | "complete" | "review" | "showColor" | "colorHunt" | "matching" | "memory" | "objectColor" | "mix" | "animalDiscovery" | "animalChoice" | "animalColor" | "animalSound" | "animalSpeaking" | "animalSentence" | "animalMission" | "numberIntro" | "numberDiscovery" | "numberListenFind" | "numberCount" | "numberAnimalColor" | "numberAnimal" | "numberSpeaking" | "numberSequence" | "numberChallenge" | "familyIntro" | "familySalon" | "familyFind" | "familyChambre" | "familyNumber" | "familyColor" | "familyAnimal" | "familySpeaking" | "familySecret" | "familyChallenge" | "foodIntro" | "foodTeach" | "foodBasket" | "foodListen" | "foodCount" | "foodColor" | "foodWorld" | "foodSpeaking" | "foodChallenge" | "classDiscovery" | "classChoice" | "classMatching" | "classMemory" | "classObjectColor" | "classCount" | "classSpeaking" | "classMission" | "scrambleIntro" | "scrambleAnimal" | "scrambleFood" | "scrambleAudio" | "scrambleSuper" | "clockIntro" | "clockDiscovery" | "clockSentenceScramble" | "clockHandsChallenge" | "clockSpeaking" | "clockReading" | "clockWriting" | "clockChoice" | "weekIntro" | "weekDiscovery" | "weekListening" | "weekSpeaking" | "weekReading" | "weekWriting" | "weekOrder" | "schoolIntro" | "schoolTimeline" | "schoolListening" | "schoolSpeaking" | "schoolReading" | "schoolWriting" | "schoolBagGame" | "weatherActivity";
   title?: string;
   text?: string;
   translation?: string;
@@ -137,6 +138,7 @@ type Lesson = {
   completionClocks?: readonly string[];
   completionDays?: readonly string[];
   completionSchool?: readonly string[];
+  completionWeatherEmoji?: string;
 };
 
 export default function LessonShell({ lesson }: { lesson: Lesson }) {
@@ -420,6 +422,17 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
                     {item}
                   </span>
                 ))}
+              </div>
+              <p className="mt-5 text-gray-600 font-medium">{lesson.completionText}</p>
+              <div className="mt-4 text-2xl">{lesson.completionStars?.join(" ")}</div>
+              <p className="mt-4 font-black text-[#C96A2B]">🏅 {lesson.completionBadge}</p>
+            </>
+          )}
+
+          {lesson.completionWeatherEmoji && (
+            <>
+              <div className="mt-7 text-7xl animate-bounce">
+                {lesson.completionWeatherEmoji}
               </div>
               <p className="mt-5 text-gray-600 font-medium">{lesson.completionText}</p>
               <div className="mt-4 text-2xl">{lesson.completionStars?.join(" ")}</div>
@@ -1093,6 +1106,15 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
             />
           )}
 
+          {step.type === "weatherActivity" && (
+            <WeatherKidsActivity
+              key={step.target}
+              lessonKey={step.target ?? "meteo-il-fait-beau"}
+              onSpeak={playAudio}
+              onComplete={() => setStepComplete(true)}
+            />
+          )}
+
         </section>
 
         {/* Bottom button */}
@@ -1107,7 +1129,8 @@ export default function LessonShell({ lesson }: { lesson: Lesson }) {
               step.type.startsWith("scramble") ||
               (step.type.startsWith("clock") && step.type !== "clockIntro") ||
               (step.type.startsWith("week") && step.type !== "weekIntro") ||
-              (step.type.startsWith("school") && step.type !== "schoolIntro")) &&
+              (step.type.startsWith("school") && step.type !== "schoolIntro") ||
+              (step.type === "weatherActivity")) &&
               !stepComplete)
           }
           className="mt-5 w-full rounded-2xl bg-[#C96A2B] px-6 py-4 text-lg font-bold text-white disabled:cursor-not-allowed disabled:opacity-40"

@@ -591,5 +591,26 @@ export const frenchLessons = {
       },
     ],
   },
+  "la-meteo": {
+    title: "La météo",
+    subtitle: "Khám phá thời tiết qua 8 câu tiếng Pháp.",
+    emoji: "🌦️",
+    order: 13,
+    completionTitle: "Bravo ! Tu connais la météo !",
+    completionText: "Con đã khám phá nắng, mưa, gió, tuyết và cầu vồng bằng tiếng Pháp.",
+    completionBadge: "Petit météorologue 🌦️",
+    completionStars: ["⭐", "⭐", "⭐", "⭐", "⭐"],
+    completionWeatherEmoji: "🌦️",
+    steps: [
+      { type: "weatherActivity", target: "meteo-il-fait-beau", instruction: "☀️ Học câu Il fait beau ! — Trời đẹp quá!" },
+      { type: "weatherActivity", target: "meteo-il-pleut", instruction: "🌧️ Học câu Il pleut ! — Trời mưa rồi!" },
+      { type: "weatherActivity", target: "meteo-il-fait-chaud", instruction: "🥵 Học câu Il fait chaud ! — Trời nóng!" },
+      { type: "weatherActivity", target: "meteo-il-fait-froid", instruction: "🥶 Học câu Il fait froid ! — Trời lạnh!" },
+      { type: "weatherActivity", target: "meteo-il-neige", instruction: "❄️ Học câu Il neige ! — Tuyết rơi!" },
+      { type: "weatherActivity", target: "meteo-du-vent", instruction: "💨 Học câu Il y a du vent ! — Trời có gió!" },
+      { type: "weatherActivity", target: "meteo-des-nuages", instruction: "☁️ Học câu Il y a des nuages ! — Trời nhiều mây!" },
+      { type: "weatherActivity", target: "meteo-arc-en-ciel", instruction: "🌈 Học câu Regarde l'arc-en-ciel ! — Nhìn kìa, cầu vồng!" },
+    ],
+  },
 } as const;
 
