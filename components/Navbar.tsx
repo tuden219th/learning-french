@@ -6,27 +6,31 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-[#E9DDC8] bg-[#FFF8EA]/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-6">
         {/* Brand */}
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/becham.png"
-            alt="Bé Chấm"
-            width={42}
-            height={42}
-            className="h-10 w-auto"
-            priority
-          />
+        <div className="flex items-center gap-3">
+          <Link href="https://tudencafe.com" aria-label="Về trang chủ Từ Đến Coffee">
+            <Image
+              src="/becham.png"
+              alt="Bé Chấm"
+              width={42}
+              height={42}
+              className="h-10 w-auto"
+              priority
+            />
+          </Link>
 
           <div className="h-8 w-px bg-[#D8CDBB]" />
 
-          <Image
-            src="/logoFrench.png"
-            alt="Học tiếng Pháp"
-            width={150}
-            height={42}
-            className="h-9 w-auto object-contain"
-            priority
-          />
-        </Link>
+          <Link href="/" aria-label="Trang chủ học tiếng Pháp">
+            <Image
+              src="/logoFrench.png"
+              alt="Học tiếng Pháp"
+              width={150}
+              height={42}
+              className="h-9 w-auto object-contain"
+              priority
+            />
+          </Link>
+        </div>
 
         {/* Desktop navigation */}
         <nav className="hidden items-center gap-7 md:flex">
